@@ -2688,7 +2688,7 @@ public abstract class UIComponentBase extends UIComponent {
 
         public boolean addAll(Collection<? extends UIComponent> collection) {
             Iterator<UIComponent> elements =
-                    (new ArrayList<>(collection)).iterator();
+                    (new ArrayList<UIComponent>(collection)).iterator();
             boolean changed = false;
             while (elements.hasNext()) {
                 UIComponent element = elements.next();
@@ -2704,7 +2704,7 @@ public abstract class UIComponentBase extends UIComponent {
 
         public boolean addAll(int index, Collection<? extends UIComponent> collection) {
             Iterator<UIComponent> elements =
-                    (new ArrayList<>(collection)).iterator();
+                    (new ArrayList<UIComponent>(collection)).iterator();
             boolean changed = false;
             while (elements.hasNext()) {
                 UIComponent element = elements.next();

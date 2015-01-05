@@ -1,0 +1,7 @@
+/bin/
+/dependencies/
+/jsf-api/build/
+/jsf-ri/build/
+/jsf-tools/build/
+/jsf-tools/target/
+/build.properties
