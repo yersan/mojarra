@@ -30,7 +30,17 @@ How the parent repository for this SVN mirror was created
 
 
 
-How to update the mirror from the SVN checkout
+How to update the mirror from the (local) SVN checkout
 
 1. git svn rebase
 2. git push github master
+
+This will update the base mirror https://github.com/javaeekickoff/mojarra
+
+
+
+How to update the github fork using github 
+
+1. Request https://github.com/javaeekickoff/mojarra/compare/omnifaces:master...javaeekickoff:master
+2. Create a pull request for the changes
+3. Accept and confirm the pull request
