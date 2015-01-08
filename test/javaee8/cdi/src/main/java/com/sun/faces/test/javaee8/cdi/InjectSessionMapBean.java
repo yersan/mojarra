@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -39,19 +39,22 @@
  */
 package com.sun.faces.test.javaee8.cdi;
 
+import javax.faces.context.SessionMap;
+import java.util.Map;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.component.UIViewRoot;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Named(value = "injectUIViewRootBean")
+@Named(value = "injectSessionMapBean")
 @RequestScoped
-public class InjectUIViewRootBean {
+public class InjectSessionMapBean {
 
+    @SessionMap
     @Inject
-    UIViewRoot viewRoot;
+    Map<String, Object> sessionMap;
 
     public String getValue() {
-        return viewRoot.toString();
+        sessionMap.put("key", "value");
+        return sessionMap.toString();
     }
 }

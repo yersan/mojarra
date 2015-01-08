@@ -65,6 +65,7 @@ public class CdiExtension implements Extension {
         afterBeanDiscovery.addBean(new ExternalContextProducer());
         afterBeanDiscovery.addBean(new FacesContextProducer());
         afterBeanDiscovery.addBean(new SessionProducer());
+        afterBeanDiscovery.addBean(new SessionMapProducer());
         afterBeanDiscovery.addBean(new ViewMapProducer());
         afterBeanDiscovery.addBean(new ViewProducer());
     }
