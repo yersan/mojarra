@@ -58,6 +58,7 @@
 
 package com.sun.faces.facelets.impl;
 
+import com.sun.faces.RIConstants;
 import javax.faces.view.facelets.ResourceResolver;
 import java.net.URL;
 import javax.faces.application.ResourceHandler;
@@ -67,6 +68,8 @@ import javax.faces.context.FacesContext;
 public class DefaultResourceResolver extends ResourceResolver {
     
     private ResourceHandler resourceHandler = null;
+    
+    public static final String NON_DEFAULT_RESOURCE_RESOLVER_PARAM_NAME = RIConstants.FACES_PREFIX + "NDRRPN";
 
     public DefaultResourceResolver(ResourceHandler resourceHandler) {
         super();

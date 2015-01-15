@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -89,6 +89,7 @@ import javax.faces.flow.FlowHandler;
 import javax.faces.validator.Validator;
 
 import com.sun.faces.RIConstants;
+import com.sun.faces.cdi.CdiUtils;
 import com.sun.faces.config.WebConfiguration;
 import com.sun.faces.config.WebConfiguration.WebContextInitParameter;
 import static com.sun.faces.config.WebConfiguration.BooleanWebContextInitParameter.DateTimeConverterUsesSystemTimezone;
@@ -103,7 +104,11 @@ import com.sun.faces.util.FacesLogger;
 import com.sun.faces.util.MessageUtils;
 import com.sun.faces.util.ReflectionUtils;
 import com.sun.faces.util.Util;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashSet;
 
 import java.util.LinkedHashSet;
@@ -120,10 +125,16 @@ import java.util.TimeZone;
 import java.util.LinkedHashMap;
 
 import javax.el.ValueExpression;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.faces.application.Resource;
 import javax.faces.render.RenderKit;
 import javax.faces.render.Renderer;
 import javax.faces.view.ViewDeclarationLanguage;
+import javax.xml.namespace.NamespaceContext;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import org.xml.sax.InputSource;
 
 
 /**
@@ -1331,7 +1342,18 @@ public class ApplicationImpl extends Application {
     public Converter createConverter(String converterId) {
 
         Util.notNull("converterId", converterId);
-        Converter returnVal = (Converter) newThing(converterId, converterIdMap);
+        Converter returnVal;
+        
+        if (isJsf23()) {
+            BeanManager beanManager = getBeanManager();
+            returnVal = CdiUtils.createConverter(beanManager, converterId);
+            if (returnVal != null) {
+                return returnVal;
+            }
+        }
+        
+        returnVal = (Converter) newThing(converterId, converterIdMap);
+        
         if (returnVal == null) {
             Object[] params = {converterId};
             if (LOGGER.isLoggable(Level.SEVERE)) {
@@ -1351,14 +1373,23 @@ public class ApplicationImpl extends Application {
         return returnVal;
     }
 
-
     /**
      * @see javax.faces.application.Application#createConverter(Class)
      */
     public Converter createConverter(Class<?> targetClass) {
 
         Util.notNull("targetClass", targetClass);
-        Converter returnVal = (Converter) newConverter(targetClass,
+        Converter returnVal = null;
+        
+        if (isJsf23()) {
+            BeanManager beanManager = getBeanManager();
+            returnVal = CdiUtils.createConverter(beanManager, targetClass);
+            if (returnVal != null) {
+                return returnVal;
+            }
+        }
+        
+        returnVal = (Converter) newConverter(targetClass,
                                                    converterTypeMap,targetClass);
         if (returnVal != null) {
             if (LOGGER.isLoggable(Level.FINE)) {
@@ -1586,7 +1617,18 @@ public class ApplicationImpl extends Application {
     public Validator createValidator(String validatorId) throws FacesException {
 
         Util.notNull("validatorId", validatorId);
-        Validator returnVal = (Validator) newThing(validatorId, validatorMap);
+
+        Validator returnVal;
+
+        if (isJsf23()) {
+            BeanManager beanManager = getBeanManager();
+            returnVal = CdiUtils.createValidator(beanManager, validatorId);
+            if (returnVal != null) {
+                return returnVal;
+            }
+        }
+
+        returnVal = (Validator) newThing(validatorId, validatorMap);
         if (returnVal == null) {
             Object[] params = {validatorId};
             if (LOGGER.isLoggable(Level.SEVERE)) {
@@ -2529,4 +2571,85 @@ public class ApplicationImpl extends Application {
 
     private static final class ComponentResourceClassNotFound { }
 
+    private Boolean isJsf23;
+    
+        /**
+     * Get the faces-config.xml version (if any).
+     *
+     * @param facesContext the Faces context.
+     * @return the version found, or "" if none found.
+     */
+    private String getFacesConfigXmlVersion(FacesContext facesContext) {
+        String result = "";
+        InputStream stream = null;
+        try {
+            URL url = facesContext.getExternalContext().getResource("/WEB-INF/faces-config.xml");
+            if (url != null) {
+                XPathFactory factory = XPathFactory.newInstance();
+                XPath xpath = factory.newXPath();
+                xpath.setNamespaceContext(new JavaeeNamespaceContext());
+                stream = url.openStream();
+                result = xpath.evaluate("string(/javaee:faces-config/@version)", new InputSource(stream));
+            }
+        } catch (MalformedURLException mue) {
+        } catch (XPathExpressionException | IOException xpee) {
+        } finally {
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch (IOException ioe) {
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Are we running in JSF 2.3
+     * 
+     * @return true if we are, false otherwise.
+     */
+    private boolean isJsf23() {
+        if (isJsf23 == null) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            isJsf23 = getFacesConfigXmlVersion(facesContext).equals("2.3");
+        }
+        return isJsf23;
+    }
+
+    public class JavaeeNamespaceContext implements NamespaceContext {
+
+        @Override
+        public String getNamespaceURI(String prefix) {
+            return "http://xmlns.jcp.org/xml/ns/javaee";
+        }
+
+        @Override
+        public String getPrefix(String namespaceURI) {
+            return "javaee";
+        }
+
+        @Override
+        public Iterator getPrefixes(String namespaceURI) {
+            return null;
+        }
+    }
+    
+    /**
+     * Stores the bean manager.
+     */
+    private BeanManager beanManager;
+    
+    /**
+     * Get the bean manager.
+     * 
+     * @return the bean manager.
+     */
+    private BeanManager getBeanManager() {
+        if (beanManager == null) {        
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            beanManager = Util.getCdiBeanManager(facesContext);
+        }       
+        return beanManager;
+    }
 }
