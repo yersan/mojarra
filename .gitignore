@@ -1,4 +1,8 @@
+*.class
+*.jar
+target/
 /bin/
+/dist/
 /dependencies/
 /jsf-api/build/
 /jsf-ri/build/
