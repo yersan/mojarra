@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  * 
@@ -69,9 +69,9 @@ public class FlowA implements Serializable {
                 switchCase().condition("#{flow_a_Bean.switchB_Case02}").fromOutcome("switchB_result").
                 switchCase().condition("#{flow_a_Bean.switchB_Case03}").fromOutcome("page03");
         flowBuilder.switchNode("switchC").defaultOutcome("#{flow_a_Bean.defaultOutcome}").
-                switchCase().condition("#{flow_a_Bean.switchB_Case01}").fromOutcome("page01").
-                switchCase().condition("#{flow_a_Bean.switchB_Case02}").fromOutcome("page02").
-                switchCase().condition("#{flow_a_Bean.switchB_Case03}").fromOutcome("page03");
+                switchCase().condition("#{flow_a_Bean.switchC_Case01}").fromOutcome("page01").
+                switchCase().condition("#{flow_a_Bean.switchC_Case02}").fromOutcome("page02").
+                switchCase().condition("#{flow_a_Bean.switchC_Case03}").fromOutcome("page03");
 
         return flowBuilder.getFlow();
     }

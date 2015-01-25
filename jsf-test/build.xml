@@ -10,7 +10,7 @@
     and Distribution License("CDDL") (collectively, the "License").  You
     may not use this file except in compliance with the License.  You can
     obtain a copy of the License at
-    https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+    https://glassfish.java.net/public/CDDL+GPL_1_1.html
     or packager/legal/LICENSE.txt.  See the License for the specific
     language governing permissions and limitations under the License.
 
@@ -55,13 +55,11 @@
 
     <property name="applications-for-V3.1-only"
               value="GLASSFISH-11636,
-                     GLASSFISH-15985,
-                     GLASSFISH-17218" />
+                     GLASSFISH-15985" />
 
     <property name="applications-for-V3.1_no_cluster-only"
               value="GLASSFISH-11636,
                      GLASSFISH-15985,
-                     GLASSFISH-17218,
                      GLASSFISH-16847,
                      JAVASERVERFACES-1338,
                      admingui" />
@@ -70,8 +68,7 @@
                     JAVASERVERFACES-1995,
                     JAVASERVERFACES_SPEC_PUBLIC-763,
                     JAVASERVERFACES_SPEC_PUBLIC-594,
-                    JAVASERVERFACES_SPEC_PUBLIC-719,
-                    JAVASERVERFACES_SPEC_PUBLIC-1082" />
+                    JAVASERVERFACES_SPEC_PUBLIC-719" />
 
     <target name="clean" depends="define.applications"
             description="">

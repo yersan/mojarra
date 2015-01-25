@@ -10,7 +10,7 @@
     and Distribution License("CDDL") (collectively, the "License").  You
     may not use this file except in compliance with the License.  You can
     obtain a copy of the License at
-    https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+    https://glassfish.java.net/public/CDDL+GPL_1_1.html
     or packager/legal/LICENSE.txt.  See the License for the specific
     language governing permissions and limitations under the License.
 
@@ -59,6 +59,52 @@
             <flow-id>switch-start-node</flow-id>
         </flow-reference>
     </flow-call>
+    <!-- method-call -> method-call -->
+
+    <method-call id="method-call-02" >
+      <method>#{pflow.methodCall02()}</method>
+      <default-outcome>delay_event</default-outcome>
+    </method-call>
+    
+    <method-call id="method-call-03" >
+      <method>#{pflow.methodCall03()}</method>
+      <default-outcome>delay_event</default-outcome>
+    </method-call>
+    
+    <method-call id="method-call-04" >
+      <method>#{pflow.methodCall04()}</method>
+      <default-outcome>delay_event</default-outcome>
+    </method-call>
+    
+    <!-- method-call -> flow call -->
+    
+    <method-call id="method-call-to-flow-call">
+        <method>#{pflow.callFlowCallNode()}</method>
+        <default-outcome>delay_event</default-outcome>
+    </method-call>
+    
+    <!-- method-call -> switch -->
+
+    <method-call id="method-call-to-switch">
+        <method>#{pflow.callSwitchNode()}</method>
+        <default-outcome>delay_event</default-outcome>
+    </method-call>
+    
+    <switch id="switchA">
+      <case>
+        <if>#{pflow.switchA_Case01}</if>
+        <from-outcome>page01</from-outcome>
+      </case>
+      <case>
+        <if>#{pflow.switchA_Case02}</if>
+        <from-outcome>page02</from-outcome>
+      </case>
+      <case>
+        <if>#{pflow.switchA_Case03}</if>
+        <from-outcome>viewNodeAtEndOfMethodCalls</from-outcome>
+      </case>
+      <default-outcome>firstpage</default-outcome>
+    </switch>
     
   </flow-definition>  
   

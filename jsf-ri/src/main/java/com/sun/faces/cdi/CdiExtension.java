@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -44,13 +44,7 @@ import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.Extension;
 
 /**
- * The FacesContext extension.
- *
- * <p>
- * Note because of class loading we need to use an extension to get the
- * FacesContext injected and we cannot use the example as given in the Weld
- * documentation.
- * </p>
+ * The CDI extension.
  */
 public class CdiExtension implements Extension {
 
@@ -64,6 +58,7 @@ public class CdiExtension implements Extension {
         afterBeanDiscovery.addBean(new ApplicationMapProducer());
         afterBeanDiscovery.addBean(new ExternalContextProducer());
         afterBeanDiscovery.addBean(new FacesContextProducer());
+        afterBeanDiscovery.addBean(new RequestCookieMapProducer());
         afterBeanDiscovery.addBean(new SessionProducer());
         afterBeanDiscovery.addBean(new SessionMapProducer());
         afterBeanDiscovery.addBean(new ViewMapProducer());

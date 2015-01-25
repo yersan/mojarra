@@ -1,14 +1,14 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -62,7 +62,7 @@ import com.sun.faces.util.Util;
 public class RequestParameterMap extends BaseContextMap<String> {
 
     private String namingContainerId;
-    private final boolean namespaceParameters;
+    private boolean namespaceParameters;
     private final ServletRequest request;
     private boolean inspectedParameterNames = false;
 
@@ -72,10 +72,15 @@ public class RequestParameterMap extends BaseContextMap<String> {
 
     public RequestParameterMap(ServletRequest request) {
         this.request = request;
-        WebConfiguration webConfig = WebConfiguration.getInstance();
-        namespaceParameters = webConfig.isOptionEnabled(
-                  BooleanWebContextInitParameter.NamespaceParameters);
-    }
+            try {
+                WebConfiguration webConfig = WebConfiguration.getInstance(request.getServletContext());
+                namespaceParameters = webConfig.isOptionEnabled(
+                    BooleanWebContextInitParameter.NamespaceParameters);
+            } catch(AbstractMethodError ame) {
+                // FIXME Remove the catch when all Cactus tests are migrated
+                namespaceParameters = false;
+            }
+        }
 
 
     // -------------------------------------------------------- Methods from Map

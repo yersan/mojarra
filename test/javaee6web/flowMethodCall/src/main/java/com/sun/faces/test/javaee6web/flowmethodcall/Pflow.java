@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  * 
@@ -52,5 +52,38 @@ public class Pflow implements Serializable {
     public String firstPage() {
         return "myFirstViewNode";
     }
+    public String methodCall02() {
+        return "method-call-03";
+    }
+    
+    public String methodCall03() {
+        return "method-call-04";
+    }
+    
+    public String methodCall04() {
+        return "viewNodeAtEndOfMethodCalls";
+    }
+    
+    public String callFlowCallNode() {
+        return "call-switch-start-node";
+    }
+
+    public String callSwitchNode() {
+        return "switchA";
+    }
+    
+    public boolean isSwitchA_Case01() {
+        return false;
+    }
+
+    public boolean isSwitchA_Case02() {
+        return false;
+    }
+
+    public boolean isSwitchA_Case03() {
+        return true;
+    }
+    
+
 
 }

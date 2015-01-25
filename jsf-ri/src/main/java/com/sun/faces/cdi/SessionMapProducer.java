@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -41,7 +41,6 @@ package com.sun.faces.cdi;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.Collections;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
 import java.util.HashSet;
@@ -137,7 +136,7 @@ public class SessionMapProducer extends CdiProducer
      */
     @Override
     public Set<InjectionPoint> getInjectionPoints() {
-        return Collections.emptySet();
+        return emptySet();
     }
 
     /**

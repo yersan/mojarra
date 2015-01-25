@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -891,7 +891,18 @@ public class ApplicationImpl extends Application {
     public Behavior createBehavior(String behaviorId) throws FacesException {
 
         Util.notNull("behaviorId", behaviorId);
-        Behavior returnVal = (Behavior) newThing(behaviorId, behaviorMap);
+        
+        Behavior returnVal;
+        
+        if (isJsf23()) {
+            BeanManager beanManager = getBeanManager();
+            returnVal = CdiUtils.createBehavior(beanManager, behaviorId);
+            if (returnVal != null) {
+                return returnVal;
+            }
+        }
+        
+        returnVal = (Behavior) newThing(behaviorId, behaviorMap);
         if (returnVal == null) {
             Object[] params = {behaviorId};
             if (LOGGER.isLoggable(Level.SEVERE)) {

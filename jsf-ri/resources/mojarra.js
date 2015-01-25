@@ -7,7 +7,7 @@
  * General Public License Version 2 only ("GPL") or the Common Development
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License. You can obtain
- * a copy of the License at https://glassfish.dev.java.net/public/CDDL+GPL.html
+ * a copy of the License at https://glassfish.java.net/public/CDDL+GPL.html
  * or glassfish/bootstrap/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -140,7 +140,14 @@ mojarra.jsfcljs = function jsfcljs(f, pvp, t) {
     if (t) {
         f.target = t;
     }
-    f.submit();
+    if (f.onsubmit) {
+        var result = f.onsubmit();
+        if ((typeof result == 'undefined') || result) {
+            f.submit();
+        }
+    } else {
+        f.submit();
+    }    
     f.target = ft;
     mojarra.dpf(f);
 };

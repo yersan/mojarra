@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
     and Distribution License("CDDL") (collectively, the "License").  You
     may not use this file except in compliance with the License.  You can
     obtain a copy of the License at
-    https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+    https://glassfish.java.net/public/CDDL+GPL_1_1.html
     or packager/legal/LICENSE.txt.  See the License for the specific
     language governing permissions and limitations under the License.
 
@@ -39,7 +40,12 @@
     only if the new code is made subject to such option by the copyright
     holder.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.sun.faces.test</groupId>
@@ -60,14 +66,20 @@
     </dependencies>
     <modules>
         <module>ajax</module>
+        <module>ajaxNamespace</module>
+        <module>appUsingJarWithExactlyTwoContracts</module>
         <module>component</module>
         <module>composite</module>
         <module>contractUsingHostHeader</module>
         <module>contractUsingViewRoot</module>
         <module>custom-viewroot-viewscope</module>
+        <module>customFaceletsResolver</module>
+        <module>customResolvers</module>
         <module>customResourcesDirectory</module>
         <module>customViewHandler</module>
         <module>disableIdUniqueness</module>
+        <module>doctypeHtml5</module>
+        <module>doctypeXhtml</module>
         <module>dynamic</module>
         <module>dynamicChildAtCorrectIndex</module>
         <module>dynamicTransientParent</module>
@@ -80,6 +92,8 @@
         <module>factory</module>
         <module>flashNoSession</module>
         <module>implicitContract</module>
+        <module>jarWithExactlyTwoContracts</module>
+        <module>initRequestParameterMap</module>
         <module>multiTenantSetsTccl</module>
         <module>multiTenantUsesFactoryFinder</module>
         <module>navigation</module>
@@ -91,5 +105,5 @@
         <module>systest</module>
         <module>stateViewExpiredExceptionMissing</module>
         <module>viewScopeFailover</module>
-  </modules>
+    </modules>
 </project>
