@@ -51,7 +51,7 @@ public class InjectApplicationMapBean {
 
     @ApplicationMap
     @Inject
-    Map applicationMap;
+    Map<String, Object> applicationMap;
 
     public String getValue() {
         return applicationMap.containsKey("com.sun.faces.config.WebConfiguration") ? "TRUE" : "FALSE";
