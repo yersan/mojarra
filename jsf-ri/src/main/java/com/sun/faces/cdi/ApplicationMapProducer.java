@@ -80,6 +80,8 @@ public class ApplicationMapProducer extends CdiProducer implements Bean<Map<Stri
 
         private static final long serialVersionUID = 1L;
     }
+    
+    private final Set<Type> types = new HashSet<Type>(asList(new ParameterizedTypeImpl(Map.class, new Type[] {String.class, Object.class}), Object.class));
 
     /**
      * Create the actual instance.
@@ -175,7 +177,7 @@ public class ApplicationMapProducer extends CdiProducer implements Bean<Map<Stri
      */
     @Override
     public Set<Type> getTypes() {
-        return new HashSet<>(asList(Map.class));
+        return types;
     }
 
     /**
