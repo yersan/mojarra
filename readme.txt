@@ -30,6 +30,40 @@ How the parent repository for this SVN mirror was created
 
 
 
+How to run tests
+
+1. In the /.m2 directory in the home of the user that runs the test, create a settings.xml file with the following content
+(or add the <profile> tag and child content to an existing settings.xml file) 
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+          <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <glassfish.cargo.home>GLASSFISH_LOCATION</glassfish.cargo.home>
+        <glassfish.patch.home>GLASSFISH_LOCATION</glassfish.patch.home>
+      </properties>
+   </profile>
+  </profiles>
+
+</settings>
+
+2. From SOURCE_HOME run: ant mvn.deploy.snapshot.local
+
+This will build the source jars in addition to the binary jar, and will install these in the local m2 repository.
+
+3. cd into SOURCE_HOME/test and follow the README.txt there
+
+
+
+
+
 How to update the mirror from the (local) SVN checkout
 
 1. git svn rebase
