@@ -81,6 +81,9 @@ public class ApplicationMapProducer extends CdiProducer implements Bean<Map<Stri
         private static final long serialVersionUID = 1L;
     }
     
+    /**
+     * The set of types that this producer is capable of producing, and hence can be used as the type of an injection point.
+     */
     private final Set<Type> types = new HashSet<Type>(asList(new ParameterizedTypeImpl(Map.class, new Type[] {String.class, Object.class}), Map.class, Object.class));
 
     /**
