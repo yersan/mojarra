@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -53,7 +53,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JsfTestRunner.class)
-public class SpecXXXX3IT {
+public class Spec3730IT {
 
     private String webUrl;
     private WebClient webClient;
@@ -70,10 +70,10 @@ public class SpecXXXX3IT {
     }
 
     @Test
-    @JsfTest(value = JsfVersion.JSF_2_3_0_M01,
+    @JsfTest(value = JsfVersion.JSF_2_3_0_M02,
             excludes = {WEBLOGIC_12_2_1, WEBLOGIC_12_1_4})
-    public void testInjectViewMap2() throws Exception {
-        HtmlPage page = webClient.getPage(webUrl + "faces/injectViewMap2.xhtml");
-        assertTrue(page.asXml().contains("{}"));
+    public void testInjectSessionMap2() throws Exception {
+        HtmlPage page = webClient.getPage(webUrl + "faces/injectSessionMap2.xhtml");
+        assertTrue(page.asXml().contains("key=value"));
     }
 }
