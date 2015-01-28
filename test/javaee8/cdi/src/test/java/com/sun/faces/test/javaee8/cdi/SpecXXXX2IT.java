@@ -53,7 +53,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JsfTestRunner.class)
-public class Spec1345IT {
+public class SpecXXXX2IT {
 
     private String webUrl;
     private WebClient webClient;
