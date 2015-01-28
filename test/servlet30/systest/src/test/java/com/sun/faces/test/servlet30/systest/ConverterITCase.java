@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,23 +37,25 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package com.sun.faces.test.javaee8.cdi;
+package com.sun.faces.test.servlet30.systest;
 
-import java.util.Map;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.ApplicationMap;
-import javax.inject.Inject;
-import javax.inject.Named;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.sun.faces.htmlunit.HtmlUnitFacesITCase;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-@Named(value = "injectApplicationMapBean")
-@RequestScoped
-public class InjectApplicationMapBean {
+public class ConverterITCase extends HtmlUnitFacesITCase {
 
-    @ApplicationMap
-    @Inject
-    Map applicationMap;
-    
-    public String getValue() {
-        return Boolean.toString(applicationMap.containsKey("com.sun.faces.config.WebConfiguration"));
+    public ConverterITCase(String name) {
+        super(name);
+    }
+
+    public static Test suite() {
+        return (new TestSuite(ConverterITCase.class));
+    }
+
+    public void test05() throws Exception {
+        HtmlPage page = getPage("/faces/converter05.jsp");
+        assertTrue(page.asXml().matches("(?s).*<body>\\s*<span\\s*id=\\\"outputDatetime1\\\">\\s*7/10/96\\s*3:31:31\\s*PM\\s*EDT\\s*</span>\\s*<span\\s*id=\\\"outputDatetime2\\\">\\s*7/10/96\\s*3:31:31\\s*PM\\s*EDT\\s*</span>\\s*<span\\s*id=\\\"outputDatetime3\\\">\\s*7/10/96\\s*3:31:31\\s*PM\\s*EDT\\s*</span>\\s*<span\\s*id=\\\"outputNumber1\\\">\\s*10.000\\s*</span>\\s*<span\\s*id=\\\"outputNumber2\\\">\\s*10,000\\s*</span>\\s*<span\\s*id=\\\"outputNumber3\\\">\\s*10,000\\s*</span>\\s*</body>.*"));
     }
 }

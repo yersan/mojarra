@@ -46,25 +46,37 @@ import java.util.Objects;
 
 /**
  * <p class="changed_added_2_3">
- * ParameterizedTypeImpl is a basic implementation of the ParameterizedType interface. It is used
- * by the dynamic CDI producers that produce generic types.
+ * ParameterizedTypeImpl is a basic implementation of the ParameterizedType
+ * interface. It is used by the dynamic CDI producers that produce generic
+ * types.
  * </p>
  *
- * @since 2.3    
- * @see ApplicationMapProducer#getTypes()
- *
+ * @since 2.3
  */
 public class ParameterizedTypeImpl implements ParameterizedType {
 
-    private final Type ownerType;
-    private final Class<?> rawType;
-    private final Type[] actualTypeArguments;
-    
     /**
-     * Constructs an instance of ParameterizedType without an owner type 
-     * 
-     * @param rawType Type representing the class or interface that declares this type.
-     * @param actualTypeArguments Array of Types representing the actual type arguments for this type
+     * Stores the owner type.
+     */
+    private final Type ownerType;
+
+    /**
+     * Stores the raw type.
+     */
+    private final Class<?> rawType;
+
+    /**
+     * Stores the actual type arguments.
+     */
+    private final Type[] actualTypeArguments;
+
+    /**
+     * Constructs an instance of ParameterizedType without an owner type
+     *
+     * @param rawType Type representing the class or interface that declares
+     * this type.
+     * @param actualTypeArguments Array of Types representing the actual type
+     * arguments for this type
      */
     public ParameterizedTypeImpl(Class<?> rawType, Type[] actualTypeArguments) {
         this(null, rawType, actualTypeArguments);
@@ -72,53 +84,89 @@ public class ParameterizedTypeImpl implements ParameterizedType {
 
     /**
      * Constructs an instance of ParameterizedType
-     * 
-     * @param ownerType Type representing the type that this type is embedded in, if any. Can be null.
-     * @param rawType Type representing the class or interface that declares this type.
-     * @param actualTypeArguments Array of Types representing the actual type arguments for this type
+     *
+     * @param ownerType the Type representing the type that this type is
+     * embedded in, if any. It can be null.
+     * @param rawType the Type representing the class or interface that declares
+     * this type.
+     * @param actualTypeArguments Array of Types representing the actual type
+     * arguments for this type
      */
-    public ParameterizedTypeImpl(Type ownerType, Class<?> rawType, Type[] actualTypeArguments) {
+    public ParameterizedTypeImpl(Type ownerType, Class<?> rawType,
+            Type[] actualTypeArguments) {
+
         this.ownerType = ownerType;
         this.rawType = rawType;
         this.actualTypeArguments = actualTypeArguments;
     }
 
+    /**
+     * Get the owner type.
+     *
+     * @return the owner type.
+     */
     @Override
     public Type getOwnerType() {
         return ownerType;
     }
 
+    /**
+     * Get the raw type.
+     *
+     * @return the raw type.
+     */
     @Override
     public Type getRawType() {
         return rawType;
     }
 
+    /**
+     * Get the actual type arguments.
+     *
+     * @return the actual type arguments.
+     */
     @Override
     public Type[] getActualTypeArguments() {
         return actualTypeArguments;
     }
 
+    /**
+     * Equals method.
+     *
+     * @param other the object to compare against.
+     * @return true if it is equals, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
-        return other instanceof ParameterizedType ? equals((ParameterizedType) other) : false;
+        return other instanceof ParameterizedType
+                ? equals((ParameterizedType) other) : false;
     }
 
     /**
-     * 
-     * Tests if an other instance of ParameterizedType is "equal to" this instance.
-     * 
+     *
+     * Tests if an other instance of ParameterizedType is "equal to" this
+     * instance.
+     *
      * @param other the other instance of ParameterizedType
-     * @return true if instances equal, false otherwise
+     * @return true if instances equal, false otherwise.
      */
     public boolean equals(ParameterizedType other) {
-        return this == other ? true : Objects.equals(getOwnerType(), other.getOwnerType())
+        return this == other ? true
+                : Objects.equals(getOwnerType(), other.getOwnerType())
                 && Objects.equals(getRawType(), other.getRawType())
-                && Arrays.equals(getActualTypeArguments(), other.getActualTypeArguments());
+                && Arrays.equals(getActualTypeArguments(),
+                        other.getActualTypeArguments());
     }
 
+    /**
+     * Hash code.
+     *
+     * @return the hash code.
+     */
     @Override
     public int hashCode() {
-        return Objects.hashCode(getOwnerType()) ^ Objects.hashCode(getRawType()) ^ Arrays.hashCode(getActualTypeArguments());
+        return Objects.hashCode(getOwnerType())
+                ^ Objects.hashCode(getRawType())
+                ^ Arrays.hashCode(getActualTypeArguments());
     }
-
 }

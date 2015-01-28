@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
- *
+ * 
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
  * and Distribution License("CDDL") (collectively, the "License").  You
@@ -11,20 +11,20 @@
  * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
- *
+ * 
  * When distributing the software, include this License Header Notice in each
  * file and include the License file at packager/legal/LICENSE.txt.
- *
+ * 
  * GPL Classpath Exception:
  * Oracle designates this particular file as subject to the "Classpath"
  * exception as provided by Oracle in the GPL Version 2 section of the License
  * file that accompanied this code.
- *
+ * 
  * Modifications:
  * If applicable, add the following below the License Header, with the fields
  * enclosed by brackets [] replaced by your own identifying information:
  * "Portions Copyright [year] [name of copyright owner]"
- *
+ * 
  * Contributor(s):
  * If you wish your version of this file to be governed by only the CDDL or
  * only the GPL Version 2, indicate your decision by adding "[Contributor]
@@ -37,23 +37,36 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package com.sun.faces.test.javaee8.cdi;
+package com.sun.faces.test.servlet30.facescomponenttag;
 
-import java.util.Map;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.ApplicationMap;
-import javax.inject.Inject;
-import javax.inject.Named;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.junit.After;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
 
-@Named(value = "injectApplicationMapBean")
-@RequestScoped
-public class InjectApplicationMapBean {
+public class Spec594IT {
 
-    @ApplicationMap
-    @Inject
-    Map applicationMap;
-    
-    public String getValue() {
-        return Boolean.toString(applicationMap.containsKey("com.sun.faces.config.WebConfiguration"));
+    private String webUrl;
+    private WebClient webClient;
+
+    @Before
+    public void setUp() {
+        webUrl = System.getProperty("integration.url");
+        webClient = new WebClient();
+    }
+
+    @After
+    public void tearDown() {
+        webClient.closeAllWindows();
+    }
+
+    @Test
+    public void testFacesComponentTag() throws Exception {
+        HtmlPage page = webClient.getPage(webUrl + "faces/index.xhtml");
+        String pageXml = page.asXml();
+        assertTrue(pageXml.matches("(?s).*<input\\s+id=\"tagNameExplicitlyDeclared\"\\s+type=\"text\"\\s+name=\"tagNameExplicitlyDeclared\"/>.*<input\\s+id=\"myTag\"\\s+type=\"text\"\\s+name=\"myTag\"/>.*"));
+        assertTrue(pageXml.contains("javax.faces.ViewState"));
     }
 }
