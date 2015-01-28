@@ -62,8 +62,6 @@ This will build the source jars in addition to the binary jar, and will install 
 
 
 
-
-
 How to update the mirror from the (local) SVN checkout
 
 1. git svn rebase
@@ -78,3 +76,20 @@ How to update the github fork using github
 1. Request https://github.com/javaeekickoff/mojarra/compare/omnifaces:master...javaeekickoff:master
 2. Create a pull request for the changes
 3. Accept and confirm the pull request
+
+Note that github doesn't let you resolve conflicts
+
+
+
+How to update the github fork using git locally
+
+Do once:
+1.  git remote add upstream git@github.com:javaeekickoff/mojarra.git
+
+Then:
+2. git fetch upstream
+3. git merge upstream/master
+4. If there are conflicts: git mergetool
+5. git commit
+6. git push
+
