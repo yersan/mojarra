@@ -12,3 +12,4 @@ target/
 /jsf-tools/build/
 /jsf-tools/target/
 /build.properties
+/.settings/
