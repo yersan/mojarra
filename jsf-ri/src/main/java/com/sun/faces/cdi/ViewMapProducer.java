@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -41,12 +41,15 @@ package com.sun.faces.cdi;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
@@ -67,6 +70,15 @@ import javax.faces.view.ViewMap;
  */
 public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Object>> {
 
+    /**
+     * The set of types that this producer is capable of producing, and hence
+     * can be used as the type of an injection point.
+     */
+    private final Set<Type> types = new HashSet<>(asList(
+            new ParameterizedTypeImpl(Map.class, new Type[]{String.class, Object.class}),
+            Map.class,
+            Object.class));
+    
     /**
      * Inner class defining an annotation literal for @ViewMap.
      */
@@ -175,7 +187,7 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
      */
     @Override
     public Set<Type> getTypes() {
-        return new HashSet<>(asList(Map.class));
+        return types;
     }
 
     /**

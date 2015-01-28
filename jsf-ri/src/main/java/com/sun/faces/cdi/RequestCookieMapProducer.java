@@ -40,14 +40,18 @@
 package com.sun.faces.cdi;
 
 import javax.faces.context.RequestCookieMap;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
@@ -66,8 +70,16 @@ import javax.faces.context.FacesContext;
  * @since 2.3
  * @see ExternalContext#getRequestCookieMap()
  */
-public class RequestCookieMapProducer extends CdiProducer 
-    implements Bean<Map<String, Object>>, PassivationCapable {
+public class RequestCookieMapProducer extends CdiProducer implements Bean<Map<String, Object>>, PassivationCapable {
+    
+    /**
+     * The set of types that this producer is capable of producing, and hence
+     * can be used as the type of an injection point.
+     */
+    private final Set<Type> types = new HashSet<>(asList(
+            new ParameterizedTypeImpl(Map.class, new Type[]{String.class, Object.class}),
+            Map.class,
+            Object.class));
 
     /**
      * Inner class defining an annotation literal for @RequestCookieMap.
@@ -187,7 +199,7 @@ public class RequestCookieMapProducer extends CdiProducer
      */
     @Override
     public Set<Type> getTypes() {
-        return new HashSet<>(asList(Map.class));
+        return types;
     }
 
     /**
