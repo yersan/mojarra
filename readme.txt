@@ -1,4 +1,5 @@
 How to build source initially
+=============================
 
 Assuming SOURCE_HOME is the directory containing this readme.txt
 
@@ -13,6 +14,7 @@ The jsf-api.jar will be in SOURCE_HOME/jsf-api/build/lib and jsf-impl.jar will b
 
 
 How to make changes using Eclipse
+=================================
 
 1. Make changes as needed in .java files, but note that the Eclipse compiled result in SOURCE_HOME/bin must be ignored
 2. From SOURCE_HOME run (on the command line) ant clean main
@@ -22,6 +24,7 @@ The jsf-api.jar will be in SOURCE_HOME/jsf-api/build/lib and jsf-impl.jar will b
 
 
 How the parent repository for this SVN mirror was created
+=========================================================
 
 1. git svn clone -T trunk https://svn.java.net/svn/mojarra~svn
 2. cd mojarra~svn/
@@ -31,6 +34,7 @@ How the parent repository for this SVN mirror was created
 
 
 How to run tests
+================
 
 1. In the /.m2 directory in the home of the user that runs the test, create a settings.xml file with the following content
 (or add the <profile> tag and child content to an existing settings.xml file) 
@@ -63,6 +67,7 @@ This will build the source jars in addition to the binary jar, and will install 
 
 
 How to update the mirror from the (local) SVN checkout
+======================================================
 
 1. git svn rebase
 2. git push github master
@@ -72,6 +77,7 @@ This will update the base mirror https://github.com/javaeekickoff/mojarra
 
 
 How to update the github fork using github 
+==========================================
 
 1. Request https://github.com/javaeekickoff/mojarra/compare/omnifaces:master...javaeekickoff:master
 2. Create a pull request for the changes
@@ -82,6 +88,7 @@ Note that github doesn't let you resolve conflicts
 
 
 How to update the github fork using git locally
+===============================================
 
 Do once:
 1.  git remote add upstream git@github.com:javaeekickoff/mojarra.git
@@ -93,3 +100,21 @@ Then:
 5. git commit
 6. git push
 
+
+
+How to create changebundle.txt and newfiles.zip to send to upstream Mojarra project
+===================================================================================
+
+Do once:
+1. Make new dir, e.g. mojarra-cb, cd into that and run: svn checkout https://svn.java.net/svn/mojarra~svn/trunk
+
+Note that this is the third local repo if all steps of this readme have been followed.
+
+2. svn update
+3. In the git repo where changes have been made (SOURCE_HOME); git diff --name-only [hash of commit from which bundle needs to be created]~1
+4. Copy resulting filenames from previous step to the clean SVN repo created in step 1
+5. svn add [new files]
+6. ant cb
+7. [send changebundle.txt and newfiles.zip to Mojarra or attach them to JIRA issue]
+8. clean up repo: svn revert --recursive .
+9. rm [new files] (use svn status to see new files)
