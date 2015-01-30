@@ -62,7 +62,7 @@ import java.io.Serializable;
 
 /**
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: IterationStatus.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public class IterationStatus implements Serializable {
 

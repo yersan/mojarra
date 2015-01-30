@@ -69,7 +69,7 @@ import java.io.ObjectOutput;
  * 
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: TagValueExpression.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class TagValueExpression extends ValueExpression implements
         Externalizable {

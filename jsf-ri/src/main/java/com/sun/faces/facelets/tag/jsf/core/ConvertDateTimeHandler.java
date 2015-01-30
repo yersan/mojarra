@@ -74,7 +74,7 @@ import java.util.TimeZone;
  * documentation</a>.
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: ConvertDateTimeHandler.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class ConvertDateTimeHandler extends ConverterHandler {
 

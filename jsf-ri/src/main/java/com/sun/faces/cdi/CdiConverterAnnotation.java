@@ -54,8 +54,6 @@ class CdiConverterAnnotation
         extends AnnotationLiteral<FacesConverter>
         implements FacesConverter {
 
-    private static final long serialVersionUID = -6822858461634741174L;
-
     /**
      * Stores the serial version UID.
      */

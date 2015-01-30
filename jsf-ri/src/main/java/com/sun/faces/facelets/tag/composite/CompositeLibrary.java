@@ -62,7 +62,7 @@ import com.sun.faces.facelets.tag.AbstractTagLibrary;
 
 /**
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: CompositeLibrary.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class CompositeLibrary extends AbstractTagLibrary {
 

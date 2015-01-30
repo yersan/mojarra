@@ -71,7 +71,7 @@ import javax.faces.view.facelets.*;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: ActionSourceRule.java 14217 2015-01-20 21:26:27Z mriem $
  */
 final class ActionSourceRule extends MetaRule {
 

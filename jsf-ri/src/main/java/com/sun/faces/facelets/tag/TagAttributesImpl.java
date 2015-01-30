@@ -68,7 +68,7 @@ import javax.faces.view.facelets.Tag;
  * 
  * @see javax.faces.view.facelets.TagAttribute
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: TagAttributesImpl.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class TagAttributesImpl extends TagAttributes {
     private final static TagAttribute[] EMPTY = new TagAttribute[0];

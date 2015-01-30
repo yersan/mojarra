@@ -70,7 +70,7 @@ import java.util.Iterator;
  * Simplified implementation of c:set
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: SetHandler.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public class SetHandler extends TagHandlerImpl {
 

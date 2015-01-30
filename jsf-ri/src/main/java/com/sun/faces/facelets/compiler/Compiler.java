@@ -83,7 +83,7 @@ import java.util.logging.Logger;
  * A Compiler instance may handle compiling multiple sources
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: Compiler.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public abstract class Compiler {
 

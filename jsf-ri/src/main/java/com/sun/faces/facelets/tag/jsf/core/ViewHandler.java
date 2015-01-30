@@ -86,7 +86,7 @@ import javax.faces.view.facelets.TagAttributeException;
  * documentation</a>.
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: ViewHandler.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class ViewHandler extends TagHandlerImpl {
     

@@ -75,7 +75,7 @@ import javax.faces.validator.*;
  * documentation</a>.
  *
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: CoreLibrary.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class CoreLibrary extends AbstractTagLibrary {
 

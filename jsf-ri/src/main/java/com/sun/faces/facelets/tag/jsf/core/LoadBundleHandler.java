@@ -79,7 +79,7 @@ import java.util.*;
  * documentation</a>.
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: LoadBundleHandler.java 14217 2015-01-20 21:26:27Z mriem $
  */
 public final class LoadBundleHandler extends TagHandlerImpl {
 

@@ -67,7 +67,7 @@ import java.util.Map;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: NamespaceUnit.java 14217 2015-01-20 21:26:27Z mriem $
  */
 final class NamespaceUnit extends CompilationUnit {
 

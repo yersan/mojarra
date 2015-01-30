@@ -85,7 +85,7 @@ import javax.faces.FacesException;
  * Representation of a Tag's attribute in a Facelet File
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: TagAttributeImpl.java 14277 2015-01-30 17:06:10Z mriem $
  */
 public class TagAttributeImpl extends TagAttribute {
 

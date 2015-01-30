@@ -69,7 +69,7 @@ import java.util.logging.Logger;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: ComponentRule.java 14217 2015-01-20 21:26:27Z mriem $
  */
 final class ComponentRule extends MetaRule {
 

@@ -68,7 +68,7 @@ import javax.faces.view.facelets.TagHandler;
  * 
  * @see TagLibrary
  * @author Jacob Hookom
- * @version $Id$
+ * @version $Id: TagHandlerFactory.java 14217 2015-01-20 21:26:27Z mriem $
  */
 interface TagHandlerFactory {
     /**
