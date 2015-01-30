@@ -59,7 +59,9 @@ import java.util.logging.Logger;
  */
 public class AbstractValidatorTag extends ValidatorELTag {
 
-     private static final Logger LOGGER = FacesLogger.TAGLIB.getLogger();
+     private static final long serialVersionUID = 8941293586160549920L;
+
+    private static final Logger LOGGER = FacesLogger.TAGLIB.getLogger();
 
     /**
      * <p>The {@link javax.el.ValueExpression} that evaluates to an object that

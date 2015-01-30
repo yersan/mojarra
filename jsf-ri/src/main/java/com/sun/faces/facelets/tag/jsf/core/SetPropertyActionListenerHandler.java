@@ -162,6 +162,8 @@ public class SetPropertyActionListenerHandler extends TagHandlerImpl implements 
     private static class LegacySetPropertyListener implements ActionListener,
             Serializable {
 
+        private static final long serialVersionUID = 3004987947382293693L;
+
         private ValueBinding value;
 
         private ValueBinding target;
@@ -185,6 +187,8 @@ public class SetPropertyActionListenerHandler extends TagHandlerImpl implements 
 
     private static class SetPropertyListener implements ActionListener,
             Serializable {
+
+        private static final long serialVersionUID = -2760242070551459725L;
 
         private ValueExpression value;
 

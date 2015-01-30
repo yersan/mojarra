@@ -52,6 +52,7 @@ import javax.faces.FacesException;
  */
 public class PhaseListenerProxy implements PhaseListener {
 
+    private static final long serialVersionUID = -7549281226419978381L;
     private String scriptName;
 
     // ------------------------------------------------------------ Constructors

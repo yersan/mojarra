@@ -50,7 +50,10 @@ import javax.faces.FacesException;
  */
 public class ConfigurationException extends FacesException {
 
-     public ConfigurationException() {
+     private static final long serialVersionUID = 5088235742267602695L;
+
+
+    public ConfigurationException() {
         super();
     }
 

@@ -50,6 +50,7 @@ import java.util.Map;
  */
 public class LRUMap<K,V> extends LinkedHashMap<K,V> {
 
+    private static final long serialVersionUID = -7137951139094651602L;
     private int maxCapacity;
 
     // ------------------------------------------------------------ Constructors

@@ -59,6 +59,9 @@ public class ValidatorTag extends AbstractValidatorTag {
     // --------------------------------------------- Methods from ValidatorELTag
 
 
+    private static final long serialVersionUID = -2450754172058855404L;
+
+
     @Override
     protected Validator createValidator() throws JspException {       
 

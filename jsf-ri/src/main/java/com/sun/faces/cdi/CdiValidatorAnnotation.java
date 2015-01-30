@@ -54,6 +54,7 @@ class CdiValidatorAnnotation
         extends AnnotationLiteral<FacesValidator>
         implements FacesValidator {
 
+    private static final long serialVersionUID = -6266044469152347882L;
     /**
      * Stores the value.
      */

@@ -50,6 +50,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class HttpMethodRestrictionsPhaseListener implements PhaseListener {
     
+    private static final long serialVersionUID = 179883834600711161L;
+
     public HttpMethodRestrictionsPhaseListener() {
     }
     

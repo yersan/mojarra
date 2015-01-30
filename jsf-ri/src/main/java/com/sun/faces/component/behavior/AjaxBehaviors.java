@@ -63,6 +63,8 @@ import javax.faces.context.FacesContext;
  */
 public class AjaxBehaviors implements Serializable {
 
+    private static final long serialVersionUID = 1617682489423771119L;
+
     private static final String AJAX_BEHAVIORS = "javax.faces.component.AjaxBehaviors";
 
     private ArrayDeque<BehaviorInfo> behaviorStack = null;

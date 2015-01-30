@@ -55,6 +55,7 @@ import javax.servlet.jsp.JspException;
  */
 public class RegexValidatorTag extends AbstractValidatorTag {
 
+    private static final long serialVersionUID = 5353063400995625645L;
     private ValueExpression regex;
     private ValueExpression VALIDATOR_ID_EXPR;
 

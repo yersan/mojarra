@@ -95,6 +95,8 @@ public final class UIDebug extends UIComponentBase {
     public List getChildren() {
         return new ArrayList() {
 
+            private static final long serialVersionUID = 2156130539926052013L;
+
             public boolean add(Object o) {
                 throw new IllegalStateException("<ui:debug> does not support children");
             }
@@ -149,6 +151,8 @@ public final class UIDebug extends UIComponentBase {
         Map debugs = (Map) session.get(KEY);
         if (debugs == null) {
             debugs = new LinkedHashMap() {
+
+                private static final long serialVersionUID = 2541609242499547693L;
 
                 protected boolean removeEldestEntry(Map.Entry eldest) {
                     return (this.size() > 5);

@@ -59,6 +59,8 @@ import java.util.logging.Logger;
  */
 public class AbstractConverterTag extends ConverterELTag {
 
+    private static final long serialVersionUID = -8219789624438804540L;
+
     private static final Logger LOGGER = FacesLogger.TAGLIB.getLogger();
 
     /**

@@ -71,6 +71,9 @@ import java.util.logging.Logger;
 public class PhaseListenerTag extends TagSupport {
 
 
+    private static final long serialVersionUID = -387813302573848228L;
+
+
     private static final Logger LOGGER = FacesLogger.TAGLIB.getLogger();
 
 
@@ -189,6 +192,7 @@ public class PhaseListenerTag extends TagSupport {
     private static class BindingPhaseListener
          implements PhaseListener, Serializable {
 
+        private static final long serialVersionUID = -3748298130133609119L;
         private ValueExpression type;
         private ValueExpression binding;
 

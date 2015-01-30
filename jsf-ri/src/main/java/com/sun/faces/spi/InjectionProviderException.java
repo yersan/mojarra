@@ -46,6 +46,9 @@ package com.sun.faces.spi;
  */
 public class InjectionProviderException extends Exception {
 
+    private static final long serialVersionUID = -9118556608529051203L;
+
+
     /**
      * Creates a new <code>InjectionProviderException</code> with
      * the root cause of the error.    

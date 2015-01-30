@@ -71,6 +71,7 @@ public final class MappedValueExpression extends ValueExpression {
 
     private final static class Entry implements Map.Entry, Serializable {
 
+        private static final long serialVersionUID = 4361498560718735987L;
         private final Map src;
         private final Object key;
 

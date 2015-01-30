@@ -436,6 +436,7 @@ public class TagAttributeImpl extends TagAttribute {
 
     private static class AttributeLookupMethodExpression extends MethodExpression {
 
+        private static final long serialVersionUID = -8983924930720420664L;
         private ValueExpression lookupExpression;
 
 

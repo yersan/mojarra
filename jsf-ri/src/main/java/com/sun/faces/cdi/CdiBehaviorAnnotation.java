@@ -54,6 +54,7 @@ class CdiBehaviorAnnotation
         extends AnnotationLiteral<FacesBehavior>
         implements FacesBehavior {
 
+    private static final long serialVersionUID = -258069073667018312L;
     /**
      * Stores the value.
      */

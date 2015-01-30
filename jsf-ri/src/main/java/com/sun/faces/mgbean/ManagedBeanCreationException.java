@@ -51,6 +51,9 @@ public class ManagedBeanCreationException extends FacesException {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = -641675334387524657L;
+
+
     public ManagedBeanCreationException() {
         super();
     }

@@ -51,6 +51,8 @@ public class JstlIterationStatus extends IterationStatus implements
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = 5417430073472479654L;
+
     public JstlIterationStatus(boolean first,
                                boolean last,
                                int index,

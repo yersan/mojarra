@@ -47,6 +47,9 @@ import javax.faces.FacesException;
  */
 public class ManagedBeanPreProcessingException extends FacesException {
 
+    private static final long serialVersionUID = 5355477597212764294L;
+
+
     public enum Type {
         CHECKED,
         UNCHECKED

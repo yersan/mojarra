@@ -79,6 +79,8 @@ public class UILeaf extends UIComponentBase {
     
     private final static Map<String,UIComponent> facets = new HashMap<String,UIComponent>(0, 1.0f){
     
+        private static final long serialVersionUID = 6132215325480325558L;
+
         public void putAll(Map map) {
             // do nothing
         }

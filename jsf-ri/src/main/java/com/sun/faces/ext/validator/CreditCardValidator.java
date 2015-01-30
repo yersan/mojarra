@@ -56,6 +56,8 @@ import java.io.Serializable;
  */
 public class CreditCardValidator implements Validator, Serializable {
 
+    private static final long serialVersionUID = 3534760827770436010L;
+
     /**
      * Validate a String against a regular expression pattern...  The full regex
      * pattern must be matched in order to pass the validation.

@@ -290,6 +290,7 @@ class MojarraMessageFactory {
      */
     static class BindingFacesMessage extends FacesMessage {
 
+        private static final long serialVersionUID = -7811662339229705982L;
         BindingFacesMessage(
                 Locale locale,
                 String messageFormat,

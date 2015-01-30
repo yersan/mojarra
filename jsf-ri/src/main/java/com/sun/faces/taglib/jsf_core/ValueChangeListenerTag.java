@@ -206,6 +206,7 @@ public class ValueChangeListenerTag extends TagSupport {
     private static class BindingValueChangeListener
          implements ValueChangeListener, Serializable {
 
+        private static final long serialVersionUID = -703503904910636450L;
         private ValueExpression type;
         private ValueExpression binding;
 

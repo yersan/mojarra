@@ -58,6 +58,8 @@ public class ConverterTag extends AbstractConverterTag {
     // --------------------------------------------- Methods from ConverterELTag
 
 
+    private static final long serialVersionUID = -7044710401705704550L;
+
     @Override
     protected Converter createConverter() throws JspException {
 

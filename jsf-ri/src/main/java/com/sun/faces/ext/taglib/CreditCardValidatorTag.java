@@ -53,6 +53,8 @@ import javax.faces.webapp.ValidatorELTag;
  */
 public class CreditCardValidatorTag extends ValidatorELTag {
 
+    private static final long serialVersionUID = -1794591116597638154L;
+
     @Override
     protected Validator createValidator() {
         

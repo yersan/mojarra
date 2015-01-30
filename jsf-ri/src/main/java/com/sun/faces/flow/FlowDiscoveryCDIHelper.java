@@ -64,6 +64,8 @@ import javax.inject.Named;
 @Dependent
 public class FlowDiscoveryCDIHelper implements Serializable {
     
+private static final long serialVersionUID = 6217421203074690365L;
+
 public FlowDiscoveryCDIHelper() {
     }
     

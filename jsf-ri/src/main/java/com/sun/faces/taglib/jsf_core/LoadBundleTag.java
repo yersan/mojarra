@@ -91,6 +91,7 @@ import java.util.logging.Logger;
 
 public class LoadBundleTag extends TagSupport {
     
+    private static final long serialVersionUID = -584139192758868254L;
     static final String 
             PRE_VIEW_LOADBUNDLES_LIST_ATTR_NAME = 
             "com.sun.faces.taglib.jsf_core.PRE_VIEW_LOADBUNDLES_LIST";

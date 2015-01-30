@@ -68,6 +68,7 @@ public class AttributeTag extends TagSupport {
     // ------------------------------------------------------------- Attributes
 
 
+    private static final long serialVersionUID = -4058910110356397536L;
     /**
      * <p>The name of the attribute to be created, if not already present.
      */

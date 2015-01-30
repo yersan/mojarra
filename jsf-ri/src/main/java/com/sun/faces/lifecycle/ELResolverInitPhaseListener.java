@@ -74,6 +74,7 @@ import javax.faces.application.Application;
 public class ELResolverInitPhaseListener implements PhaseListener {
 
 
+    private static final long serialVersionUID = -1430099294315211489L;
     private static Logger LOGGER = FacesLogger.LIFECYCLE.getLogger();
     private boolean postInitCompleted;
 

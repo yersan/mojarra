@@ -205,6 +205,7 @@ public class ActionListenerTag extends TagSupport {
     private static class BindingActionListener
          implements ActionListener, Serializable {
 
+        private static final long serialVersionUID = -718826166288464533L;
         private ValueExpression type;
         private ValueExpression binding;
 
