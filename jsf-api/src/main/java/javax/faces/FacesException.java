@@ -51,6 +51,9 @@ public class FacesException extends RuntimeException {
     // ----------------------------------------------------------- Constructors
 
 
+    private static final long serialVersionUID = 3501800507902565991L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

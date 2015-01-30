@@ -54,6 +54,7 @@ public class ValidatorException extends FacesException {
     // ----------------------------------------------------------- Constructors
 
 
+    private static final long serialVersionUID = 6459492016772012827L;
     /**
      * <p>Construct a new exception with the specified message and
      * no root cause.</p>

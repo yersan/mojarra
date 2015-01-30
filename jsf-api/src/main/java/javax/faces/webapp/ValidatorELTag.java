@@ -80,6 +80,9 @@ public abstract class ValidatorELTag extends TagSupport {
     // --------------------------------------------------------- Public Methods
 
 
+    private static final long serialVersionUID = -4373376368829344328L;
+
+
     /**
      * <p>Create a new instance of the specified {@link Validator}
      * class, and register it with the {@link UIComponent} instance associated

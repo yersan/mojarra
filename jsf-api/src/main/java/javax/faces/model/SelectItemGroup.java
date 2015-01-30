@@ -69,6 +69,9 @@ public class SelectItemGroup extends SelectItem {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = 8355957402275580167L;
+
+
     /**
      * <p>Construct a <code>SelectItemGroup</code> with no initialized property
      * values.</p>

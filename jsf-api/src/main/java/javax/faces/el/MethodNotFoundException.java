@@ -52,6 +52,9 @@ package javax.faces.el;
 public class MethodNotFoundException extends EvaluationException {
 
 
+    private static final long serialVersionUID = 5958118161190341304L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

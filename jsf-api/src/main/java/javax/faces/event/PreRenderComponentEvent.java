@@ -62,6 +62,8 @@ public class PreRenderComponentEvent extends ComponentSystemEvent {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = -938817831518520795L;
+
     /**
 
      * <p class="changed_added_2_0">Instantiate a new

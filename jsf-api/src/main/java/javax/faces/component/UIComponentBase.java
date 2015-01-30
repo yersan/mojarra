@@ -231,6 +231,8 @@ public abstract class UIComponentBase extends UIComponent {
     }
 
     private static class PassThroughAttributesMap<K, V> extends ConcurrentHashMap<String, Object> implements Serializable {
+        private static final long serialVersionUID = 4230540513272170861L;
+
         @Override
         public Object put(String key, Object value) {
             if (null == key || null == value) {

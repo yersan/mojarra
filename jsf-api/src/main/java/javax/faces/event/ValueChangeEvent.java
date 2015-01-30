@@ -52,6 +52,9 @@ import javax.faces.context.FacesContext;
  */
 public class ValueChangeEvent extends FacesEvent {
 
+    private static final long serialVersionUID = 2455861757565618446L;
+
+
     /**
      * <p class="changed_removed_2_3">Construct a new event object from the 
      * specified source component, old value, and new value.</p>

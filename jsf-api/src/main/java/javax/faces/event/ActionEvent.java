@@ -50,6 +50,8 @@ import javax.faces.context.FacesContext;
  */
 public class ActionEvent extends FacesEvent {
 
+    private static final long serialVersionUID = 2391694421423935722L;
+
     /**
      * <p class="changed_removed_2_3">Construct a new event object from the 
      * specified source component and action command.</p>

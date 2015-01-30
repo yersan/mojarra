@@ -57,6 +57,8 @@ public class PhaseEvent extends EventObject {
     // ----------------------------------------------------------- Constructors
 
 
+    private static final long serialVersionUID = 7603034985956521464L;
+
     /**
      * <p>Construct a new event object from the specified parameters.
      * The specified {@link Lifecycle} will be the source of this event.</p>

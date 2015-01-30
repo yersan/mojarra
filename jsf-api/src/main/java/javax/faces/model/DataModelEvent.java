@@ -55,6 +55,9 @@ public class DataModelEvent extends EventObject {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = -1822980374964965366L;
+
+
     /**
      * <p>Construct an event object that is associated with the specified
      * row index and associated data.</p>

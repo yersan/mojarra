@@ -50,6 +50,8 @@ import javax.faces.FacesException;
 
 public class ProtectedViewException extends FacesException {
     
+    private static final long serialVersionUID = -1906819977415598769L;
+
     public ProtectedViewException(Throwable rootCause) {
         super(rootCause);
     }

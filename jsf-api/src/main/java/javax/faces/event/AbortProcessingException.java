@@ -51,6 +51,9 @@ import javax.faces.FacesException;
 
 public class AbortProcessingException extends FacesException {
 
+    private static final long serialVersionUID = 7726524187590697427L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

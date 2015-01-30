@@ -53,6 +53,7 @@ import javax.faces.context.FacesContext;
  */
 public abstract class BehaviorEvent extends FacesEvent {
 
+    private static final long serialVersionUID = 6516644738910462065L;
     private final Behavior behavior;
 
     /**

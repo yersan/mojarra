@@ -51,6 +51,9 @@ package javax.faces.el;
 public class ReferenceSyntaxException extends EvaluationException {
 
 
+    private static final long serialVersionUID = -7230574031883380998L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

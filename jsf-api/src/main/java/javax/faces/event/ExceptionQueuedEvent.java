@@ -56,6 +56,8 @@ package javax.faces.event;
  */
 public class ExceptionQueuedEvent extends SystemEvent {
     
+    private static final long serialVersionUID = -3413872714571466618L;
+
     /**
      * <p class="changed_added_2_0">Instantiate a new
      * <code>ExceptionQueuedEvent</code> that indicates the argument

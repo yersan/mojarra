@@ -54,6 +54,9 @@ import javax.faces.FacesException;
 public class EvaluationException extends FacesException {
 
 
+    private static final long serialVersionUID = 6143696299509378423L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

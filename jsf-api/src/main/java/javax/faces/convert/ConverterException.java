@@ -57,6 +57,8 @@ public class ConverterException extends FacesException {
     // ----------------------------------------------------------- Constructors
 
 
+    private static final long serialVersionUID = 7371795075636746246L;
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

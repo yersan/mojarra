@@ -61,6 +61,7 @@ public class FacetTag extends TagSupport {
     // -------------------------------------------------------------- Properties
 
 
+    private static final long serialVersionUID = 5019035861261307895L;
     /**
      * <p>The name of this facet.  This will be used as the facet name for
      * our <code>UIComponentTag</code> child in our <code>UIComponentTag</code>

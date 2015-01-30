@@ -85,6 +85,9 @@ public abstract class ConverterELTag extends TagSupport {
     // ---------------------------------------------------------- Public Methods
 
 
+    private static final long serialVersionUID = -1876768812840134640L;
+
+
     /**
      * <p>Create a new instance of the specified {@link Converter}
      * class, and register it with the {@link UIComponent} instance associated

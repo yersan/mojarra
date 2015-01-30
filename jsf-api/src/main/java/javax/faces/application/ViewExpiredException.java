@@ -56,6 +56,9 @@ public class ViewExpiredException extends FacesException {
     // ----------------------------------------------------------- Constructors
 
 
+    private static final long serialVersionUID = 5175808310270035833L;
+
+
     /**
      * <p>Construct a new exception with no detail message or root cause.</p>
      */

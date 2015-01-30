@@ -63,6 +63,9 @@ public class PostConstructCustomScopeEvent extends SystemEvent {
 
     // ------------------------------------------------------------ Constructors
 
+    private static final long serialVersionUID = 4749939775937702379L;
+
+
     /**
      * <p class="changed_added_2_0">An instance of this event indicates
      * that the custom scope enclosed within the argument

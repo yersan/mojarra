@@ -66,6 +66,8 @@ public class PostValidateEvent extends ComponentSystemEvent {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = -4213993829669626297L;
+
     /**
 
      * <p class="changed_added_2_0"></p>

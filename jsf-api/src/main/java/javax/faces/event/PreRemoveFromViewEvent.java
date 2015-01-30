@@ -62,6 +62,9 @@ public class PreRemoveFromViewEvent extends ComponentSystemEvent {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = 1715650557625760365L;
+
+
     /**
      * <p class="changed_added_2_0">Instantiate a new
      * <code>BeforeRemoveFromView</code> that indicates the argument

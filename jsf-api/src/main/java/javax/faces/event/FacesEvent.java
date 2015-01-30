@@ -55,6 +55,7 @@ import javax.faces.context.FacesContext;
  */
 public abstract class FacesEvent extends EventObject {
 
+    private static final long serialVersionUID = -367663885586773794L;
     /**
      * <p class="changed_added_2_3">Stores the Faces context.</p>
      */

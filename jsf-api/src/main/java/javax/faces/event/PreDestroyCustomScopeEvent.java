@@ -57,6 +57,9 @@ public class PreDestroyCustomScopeEvent extends SystemEvent {
 
     // ------------------------------------------------------------ Constructors
 
+    private static final long serialVersionUID = -3646173841788025206L;
+
+
     /**
      * <p class="changed_added_2_0">An instance of this event indicates
      * that the custom scope enclosed within the argument

@@ -66,6 +66,8 @@ public class PreValidateEvent extends ComponentSystemEvent {
     // ------------------------------------------------------------ Constructors
 
 
+    private static final long serialVersionUID = -248088758942796822L;
+
     /**
 
      * <p class="changed_added_2_0"></p>

@@ -53,6 +53,8 @@ import javax.faces.context.FacesContext;
  */
 public class AjaxBehaviorEvent extends BehaviorEvent {
 
+    private static final long serialVersionUID = -2533217384414744239L;
+
     /**
      * <p class="changed_added_2_0 changed_removed_2_3">Construct a new event object 
      * from the specified source component and Ajax behavior.</p>

@@ -2480,6 +2480,8 @@ class SavedState implements Serializable {
 class WrapperEvent extends FacesEvent {
 
 
+    private static final long serialVersionUID = -1064272913195655452L;
+
     public WrapperEvent(UIComponent component, FacesEvent event, int rowIndex) {
         super(component);
         this.event = event;
