@@ -64,6 +64,10 @@ This will build the source jars in addition to the binary jar, and will install 
 
 3. cd into SOURCE_HOME/test and follow the README.txt there
 
+4. Not mentioned in the README.txt, but to run multiple test categories at once, run the commands mentioned in 
+   the README.txt from the top level test directory and add "--projects [dirs] -amd" as extra arguments, e.g.
+   mvn --projects javaee7,javaee6  -amd  -Pglassfish-cargo cargo:redeploy   
+
 
 
 How to update the mirror from the (local) SVN checkout
