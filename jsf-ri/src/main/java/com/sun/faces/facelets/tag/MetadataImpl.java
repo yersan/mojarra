@@ -64,7 +64,7 @@ import javax.faces.view.facelets.Metadata;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: MetadataImpl.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class MetadataImpl extends Metadata {
 

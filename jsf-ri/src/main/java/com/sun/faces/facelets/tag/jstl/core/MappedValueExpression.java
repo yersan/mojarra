@@ -65,7 +65,7 @@ import java.util.Map;
 
 /**
  * @author Jacob Hookom
- * @version $Id: MappedValueExpression.java 14277 2015-01-30 17:06:10Z mriem $
+ * @version $Id$
  */
 public final class MappedValueExpression extends ValueExpression {
 

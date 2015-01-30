@@ -70,7 +70,7 @@ import java.io.Serializable;
  * For legacy ActionSources
  * 
  * @author Jacob Hookom
- * @version $Id: LegacyMethodBinding.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  * @deprecated
  */
 public final class LegacyMethodBinding extends

@@ -74,7 +74,7 @@ import java.util.Map;
  * Default implementation of the FunctionMapper
  *
  * @author Jacob Hookom
- * @version $Id: DefaultFunctionMapper.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  * @see java.lang.reflect.Method
  * @see javax.el.FunctionMapper
  */

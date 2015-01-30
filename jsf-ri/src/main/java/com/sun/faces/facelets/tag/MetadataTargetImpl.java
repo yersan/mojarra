@@ -70,7 +70,7 @@ import java.util.Map;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: MetadataTargetImpl.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public class MetadataTargetImpl extends MetadataTarget {
 

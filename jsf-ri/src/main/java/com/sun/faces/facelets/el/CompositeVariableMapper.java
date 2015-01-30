@@ -69,7 +69,7 @@ import javax.el.VariableMapper;
  * @see javax.el.ValueExpression
  * 
  * @author Jacob Hookom
- * @version $Id: CompositeVariableMapper.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class CompositeVariableMapper extends VariableMapper {
 

@@ -71,7 +71,7 @@ import java.lang.ref.WeakReference;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: MetaRulesetImpl.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public class MetaRulesetImpl extends MetaRuleset {
 

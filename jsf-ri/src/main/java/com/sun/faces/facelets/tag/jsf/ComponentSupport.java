@@ -91,7 +91,7 @@ import java.util.Set;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: ComponentSupport.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class ComponentSupport {
 

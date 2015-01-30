@@ -63,7 +63,7 @@ import javax.faces.view.facelets.FaceletHandler;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: RemoveUnit.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class RemoveUnit extends CompilationUnit {
 

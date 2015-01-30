@@ -81,7 +81,7 @@ import java.util.Map;
  * sets them on the FaceletContext before including the targeted Facelet file.
  * 
  * @author Jacob Hookom
- * @version $Id: UserTagHandler.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class UserTagHandler extends TagHandlerImpl implements TemplateClient {
 

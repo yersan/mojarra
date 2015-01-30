@@ -69,7 +69,7 @@ import java.util.List;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: CompilationUnit.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 class CompilationUnit {
 

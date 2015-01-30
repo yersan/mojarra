@@ -73,7 +73,7 @@ import java.io.Writer;
 
 /**
  * @author Adam Winer
- * @version $Id: UIInstructionHandler.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class UIInstructionHandler extends AbstractUIHandler {
 

@@ -72,7 +72,7 @@ import java.util.*;
  * 
  * 
  * @author Jacob Hookom
- * @version $Id: LegacyELContext.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  * @deprecated
  */
 public final class LegacyELContext extends ELContext {

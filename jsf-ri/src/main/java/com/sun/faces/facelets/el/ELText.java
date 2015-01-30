@@ -79,7 +79,7 @@ import javax.faces.view.Location;
  * parser accepts either <code>${..}</code> or <code>#{..}</code>.
  * 
  * @author Jacob Hookom
- * @version $Id: ELText.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public class ELText {
 

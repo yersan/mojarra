@@ -69,7 +69,7 @@ import java.util.Stack;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: TextUnit.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class TextUnit extends CompilationUnit {
 

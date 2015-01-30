@@ -67,7 +67,7 @@ import javax.faces.view.facelets.*;
  * documentation</a>.
  * 
  * @author Jacob Hookom
- * @version $Id: ValidateDelegateHandler.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class ValidateDelegateHandler extends ValidatorHandler {
 

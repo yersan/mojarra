@@ -71,7 +71,7 @@ import java.util.Map;
  * @see java.util.Map
  * 
  * @author Jacob Hookom
- * @version $Id: DefaultVariableMapper.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class DefaultVariableMapper extends VariableMapper {
 

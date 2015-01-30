@@ -74,7 +74,7 @@ import java.io.IOException;
  * documentation</a>.
  *
  * @author Jacob Hookom
- * @version $Id: FacetHandler.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class FacetHandler extends TagHandlerImpl
     implements javax.faces.view.facelets.FacetHandler {

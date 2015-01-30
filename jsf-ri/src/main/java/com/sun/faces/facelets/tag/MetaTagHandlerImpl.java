@@ -69,7 +69,7 @@ import javax.faces.view.facelets.TagConfig;
  * the time of creating a MetaRuleset.
  * 
  * @author Jacob Hookom
- * @version $Id: MetaTagHandlerImpl.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public abstract class MetaTagHandlerImpl extends MetaTagHandler {
 

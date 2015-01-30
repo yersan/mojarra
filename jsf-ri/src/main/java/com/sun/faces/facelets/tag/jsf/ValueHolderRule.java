@@ -69,7 +69,7 @@ import javax.faces.view.facelets.*;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: ValueHolderRule.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class ValueHolderRule extends MetaRule {
 

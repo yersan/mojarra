@@ -65,7 +65,7 @@ import java.lang.reflect.Method;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: BeanPropertyTagRule.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class BeanPropertyTagRule extends MetaRule {
     

@@ -71,7 +71,7 @@ import java.util.Map;
  * contain the ValueExpression requested.
  *
  * @author Jacob Hookom
- * @version $Id: VariableMapperWrapper.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public class VariableMapperWrapper extends VariableMapper {
 

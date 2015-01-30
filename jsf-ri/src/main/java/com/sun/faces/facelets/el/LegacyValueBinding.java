@@ -75,7 +75,7 @@ import java.io.ObjectOutput;
  * 
  * 
  * @author Jacob Hookom
- * @version $Id: LegacyValueBinding.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  * @deprecated
  */
 public final class LegacyValueBinding extends ValueBinding implements Externalizable {

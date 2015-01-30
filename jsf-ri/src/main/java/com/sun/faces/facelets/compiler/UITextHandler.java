@@ -71,7 +71,7 @@ import java.io.Writer;
 
 /**
  * @author Jacob Hookom
- * @version $Id: UITextHandler.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 final class UITextHandler extends AbstractUIHandler {
 

@@ -67,7 +67,7 @@ import java.io.IOException;
 
 /**
  * @author Jacob Hookom
- * @version $Id: UIText.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class UIText extends UILeaf {
 

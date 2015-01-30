@@ -80,7 +80,7 @@ import java.util.List;
  * children handles the requested method.
  * 
  * @author Jacob Hookom
- * @version $Id: CompositeTagLibrary.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class CompositeTagLibrary implements TagLibrary {
 

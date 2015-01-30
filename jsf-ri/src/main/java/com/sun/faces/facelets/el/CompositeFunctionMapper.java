@@ -69,7 +69,7 @@ import java.lang.reflect.Method;
  * @see java.lang.reflect.Method
  * 
  * @author Jacob Hookom
- * @version $Id: CompositeFunctionMapper.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class CompositeFunctionMapper extends FunctionMapper {
 

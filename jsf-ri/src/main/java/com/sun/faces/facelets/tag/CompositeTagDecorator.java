@@ -69,7 +69,7 @@ import javax.faces.view.facelets.TagDecorator;
  * TagDecorators return a value other than null.
  * 
  * @author Jacob Hookom
- * @version $Id: CompositeTagDecorator.java 14217 2015-01-20 21:26:27Z mriem $
+ * @version $Id$
  */
 public final class CompositeTagDecorator implements TagDecorator {
 
