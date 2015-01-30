@@ -51,7 +51,7 @@ public class InjectViewMap2Bean {
 
     @Inject
     @ViewMap
-    private Map viewMap;
+    private Map<String, Object> viewMap;
 
     public String getValue() {
         return viewMap.toString();

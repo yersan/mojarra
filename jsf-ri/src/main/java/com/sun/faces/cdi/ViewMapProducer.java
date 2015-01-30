@@ -41,15 +41,12 @@ package com.sun.faces.cdi;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
@@ -61,8 +58,8 @@ import javax.faces.view.ViewMap;
 
 /**
  * <p class="changed_added_2_3">
- * The ViewMapProducer is the CDI producer that allows injection of the
- * view map using @Inject and allows EL resolving of #{viewScope}
+ * The ViewMapProducer is the CDI producer that allows injection of the view map
+ * using @Inject and allows EL resolving of #{viewScope}
  * </p>
  *
  * @since 2.3
@@ -78,7 +75,7 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
             new ParameterizedTypeImpl(Map.class, new Type[]{String.class, Object.class}),
             Map.class,
             Object.class));
-    
+
     /**
      * Inner class defining an annotation literal for @ViewMap.
      */

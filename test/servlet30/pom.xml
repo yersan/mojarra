@@ -70,6 +70,7 @@
         <module>appUsingJarWithExactlyTwoContracts</module>
         <module>component</module>
         <module>composite</module>
+        <module>compositeComponentForAttribute</module>
         <module>contractUsingHostHeader</module>
         <module>contractUsingViewRoot</module>
         <module>custom-viewroot-viewscope</module>
@@ -92,6 +93,7 @@
         <module>faceletsEmptyAsNull</module>
         <module>facesComponentTag</module>
         <module>factory</module>
+        <module>flashForceWriteCookie</module>
         <module>flashNoSession</module>
         <module>implicitContract</module>
         <module>jarWithExactlyTwoContracts</module>
