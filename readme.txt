@@ -67,8 +67,26 @@ This will build the source jars in addition to the binary jar, and will install 
 4. Not mentioned in the README.txt, but to run multiple test categories at once, run the commands mentioned in 
    the README.txt from the top level test directory and add "--projects [dirs] -amd" as extra arguments, e.g.
    mvn --projects javaee7,javaee6  -amd  -Pglassfish-cargo cargo:redeploy   
+   
+The following is a summary of the commands:
 
+Compile test wars and install in .m2
+mvn clean install
 
+Copy updated JSF jar to GlassFish
+mvn -N -Pglassfish-patch validate
+
+Start GlassFish
+mvn -N -Pglassfish-cargo cargo:start
+
+Deploy test wars
+mvn -Pglassfish-cargo cargo:redeploy
+
+Run tests 
+mvn -Pintegration verify
+
+Stop GlassFish
+mvn -N -Pglassfish-cargo cargo:stop
 
 How to update the mirror from the (local) SVN checkout
 ======================================================
