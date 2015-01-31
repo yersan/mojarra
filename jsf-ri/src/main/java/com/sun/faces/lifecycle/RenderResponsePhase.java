@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -45,9 +45,11 @@ package com.sun.faces.lifecycle;
 
 import javax.faces.FacesException;
 import javax.faces.view.ViewDeclarationLanguage;
+import javax.faces.application.Application;
 import javax.faces.application.ViewHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
+import javax.faces.event.PostRenderViewEvent;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -64,9 +66,7 @@ import javax.faces.event.PreRenderViewEvent;
  * DefaultLifecycleImpl.
  *
  */
-
 public class RenderResponsePhase extends Phase {
-
 
     // Log instance for this class
     private static Logger LOGGER = FacesLogger.LIFECYCLE.getLogger();
@@ -81,8 +81,7 @@ public class RenderResponsePhase extends Phase {
             LOGGER.fine("Entering RenderResponsePhase");
         }
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.fine("About to render view " +
-                 facesContext.getViewRoot().getViewId());
+            LOGGER.fine("About to render view " + facesContext.getViewRoot().getViewId());
         }
         // For requests intended to produce a partial response, we need prohibit
         // writing any content outside of the view itself (f:view).
@@ -98,16 +97,19 @@ public class RenderResponsePhase extends Phase {
             if (vdl != null) {
                 vdl.buildView(facesContext, facesContext.getViewRoot());
             }
+            
+            Application application = facesContext.getApplication();
 
             boolean viewIdsUnchanged;
             do {
                 String beforePublishViewId = facesContext.getViewRoot().getViewId();
-                // the before render event on the view root is a special case to keep door open for navigation
+                
+                // The before render event on the view root is a special case to keep door open for navigation
                 // this must be called *after* PDL.buildView() and before VH.renderView()
-                facesContext.getApplication().publishEvent(facesContext,
-                                                           PreRenderViewEvent.class,
-                                                           facesContext.getViewRoot());
+                application.publishEvent(facesContext, PreRenderViewEvent.class, facesContext.getViewRoot());
+                
                 String afterPublishViewId = facesContext.getViewRoot().getViewId();
+                
                 viewIdsUnchanged = beforePublishViewId == null && afterPublishViewId == null ||
                         (beforePublishViewId != null && afterPublishViewId != null) &&
                         beforePublishViewId.equals(afterPublishViewId);
@@ -116,8 +118,10 @@ public class RenderResponsePhase extends Phase {
                 }
             } while (!viewIdsUnchanged);
             
-            //render the view
+            // Render the view
             vh.renderView(facesContext, facesContext.getViewRoot());
+            
+            application.publishEvent(facesContext, PostRenderViewEvent.class, facesContext.getViewRoot());
 
         } catch (IOException e) {
             throw new FacesException(e.getMessage(), e);
@@ -134,11 +138,8 @@ public class RenderResponsePhase extends Phase {
 
     }
 
-
     public PhaseId getId() {
-
         return PhaseId.RENDER_RESPONSE;
-
     }
 
 
