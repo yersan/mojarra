@@ -12,4 +12,6 @@ target/
 /jsf-tools/build/
 /jsf-tools/target/
 /build.properties
-/.settings/
+.settings/
+test/**/.classpath
+test/**/.project
