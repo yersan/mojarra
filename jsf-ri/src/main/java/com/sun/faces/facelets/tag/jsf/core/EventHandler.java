@@ -58,10 +58,8 @@ import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagConfig;
 import javax.faces.view.facelets.TagHandler;
-
 import java.io.IOException;
 import java.io.Serializable;
-
 import javax.faces.component.UIViewRoot;
 import javax.faces.event.PreRenderViewEvent;
 
@@ -82,7 +80,7 @@ public class EventHandler extends TagHandler {
         if (ComponentHandler.isNew(parent)) {
             Class<? extends SystemEvent> eventClass = getEventClass(ctx);
             UIViewRoot viewRoot = ctx.getFacesContext().getViewRoot();
-            // Ensure that f:event can be used anywhere on the page for preRenderView and postRenderView,
+            // ensure that f:event can be used anywhere on the page for preRenderView,
             // not just as a direct child of the viewRoot
             if (null != viewRoot && (PreRenderViewEvent.class == eventClass || PostRenderViewEvent.class == eventClass) &&
                 parent != viewRoot) {
