@@ -43,34 +43,34 @@ import javax.faces.component.UIViewRoot;
 
 /**
  * <p class="changed_added_2_3">
- * When an instance of this event is passed to {@link SystemEventListener#processEvent} or
- * {@link ComponentSystemEventListener#processEvent}, the listener implementation may
- * assume that the <code>source</code> of this event instance is the {@link UIViewRoot}
- * instance that has just been rendered.
+ * When an instance of this event is passed to
+ * {@link SystemEventListener#processEvent} or
+ * {@link ComponentSystemEventListener#processEvent}, the listener
+ * implementation may assume that the <code>source</code> of this event instance
+ * is the {@link UIViewRoot} instance that has just been rendered.
  * </p>
  *
  * @since 2.3
  */
 public class PostRenderViewEvent extends ComponentSystemEvent {
 
-	/**
-	 * Stores the serial version UID
-	 */
-	private static final long serialVersionUID = 2790603812421768241L;
+    /**
+     * Stores the serial version UID.
+     */
+    private static final long serialVersionUID = 2790603812421768241L;
 
-	/**
-	 * 
-	 * <p class="changed_added_2_3">
-	 * Instantiate a new <code>PostRenderViewEvent</code> that indicates the argument
-	 * <code>root</code> has just been rendered.
-	 * </p>
-	 * 
-	 * @param root the <code>UIViewRoot</code> that has just been rendered.
-	 * 
-	 * @throws <code>IllegalArgumentException</code> if the argument is <code>null</code>.
-	 */
-	public PostRenderViewEvent(UIViewRoot root) {
-		super(root);
-	}
-
+    /**
+     *
+     * <p class="changed_added_2_3">
+     * Instantiate a new <code>PostRenderViewEvent</code> that indicates the
+     * argument <code>root</code> has just been rendered.
+     * </p>
+     *
+     * @param root the <code>UIViewRoot</code> that has just been rendered.
+     * @throws <code>IllegalArgumentException</code> if the argument is
+     * <code>null</code>.
+     */
+    public PostRenderViewEvent(UIViewRoot root) {
+        super(root);
+    }
 }
