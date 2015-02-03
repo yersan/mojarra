@@ -40,7 +40,6 @@
 package com.sun.faces.test.servlet40.systemevent;
 
 import java.io.IOException;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
@@ -59,5 +58,4 @@ public class PostRenderViewEventBean {
     public void post(ComponentSystemEvent event) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().getResponseOutputWriter().write("<!-- post -->");
     }
-
 }

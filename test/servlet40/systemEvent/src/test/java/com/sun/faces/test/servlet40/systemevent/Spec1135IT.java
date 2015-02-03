@@ -39,16 +39,12 @@
  */
 package com.sun.faces.test.servlet40.systemevent;
 
-import static com.sun.faces.test.junit.JsfServerExclude.WEBLOGIC_12_1_4;
-import static com.sun.faces.test.junit.JsfServerExclude.WEBLOGIC_12_2_1;
 import static com.sun.faces.test.junit.JsfVersion.JSF_2_3_0_M02;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.faces.test.junit.JsfTest;
@@ -72,10 +68,9 @@ public class Spec1135IT {
     }
 
     @Test
-    @JsfTest(value = JSF_2_3_0_M02, excludes = { WEBLOGIC_12_2_1, WEBLOGIC_12_1_4 })
+    @JsfTest(value = JSF_2_3_0_M02)
     public void testPreRenderViewEvent() throws Exception {
-
-        HtmlPage page = webClient.getPage(webUrl + "/faces/postRenderViewEvent.xhtml");
+        HtmlPage page = webClient.getPage(webUrl + "faces/postRenderViewEvent.xhtml");
         String response = page.getWebResponse().getContentAsString();
 
         int prePos = response.indexOf("<!-- pre -->");
@@ -85,9 +80,8 @@ public class Spec1135IT {
 
         // All of the above fragments must have been rendered
         assertTrue(prePos != -1 && htmlStartPos != -1 && htmlEndPos != -1 && postPos != -1);
-        
+
         // Assert that the fragments are rendered in the right order
         assertTrue(prePos < htmlStartPos && htmlStartPos < htmlEndPos && htmlEndPos < postPos);
-
     }
 }

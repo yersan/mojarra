@@ -66,7 +66,9 @@ import javax.faces.event.PreRenderViewEvent;
  * DefaultLifecycleImpl.
  *
  */
+
 public class RenderResponsePhase extends Phase {
+
 
     // Log instance for this class
     private static Logger LOGGER = FacesLogger.LIFECYCLE.getLogger();
@@ -81,7 +83,8 @@ public class RenderResponsePhase extends Phase {
             LOGGER.fine("Entering RenderResponsePhase");
         }
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.fine("About to render view " + facesContext.getViewRoot().getViewId());
+            LOGGER.fine("About to render view " +
+                 facesContext.getViewRoot().getViewId());
         }
         // For requests intended to produce a partial response, we need prohibit
         // writing any content outside of the view itself (f:view).
@@ -99,8 +102,8 @@ public class RenderResponsePhase extends Phase {
             }
             
             Application application = facesContext.getApplication();
-
             boolean viewIdsUnchanged;
+            
             do {
                 String beforePublishViewId = facesContext.getViewRoot().getViewId();
                 
@@ -118,7 +121,7 @@ public class RenderResponsePhase extends Phase {
                 }
             } while (!viewIdsUnchanged);
             
-            // Render the view
+            //render the view
             vh.renderView(facesContext, facesContext.getViewRoot());
             
             application.publishEvent(facesContext, PostRenderViewEvent.class, facesContext.getViewRoot());
@@ -138,8 +141,11 @@ public class RenderResponsePhase extends Phase {
 
     }
 
+
     public PhaseId getId() {
+
         return PhaseId.RENDER_RESPONSE;
+
     }
 
 
