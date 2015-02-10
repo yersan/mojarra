@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2011 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,41 +37,43 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package com.sun.faces.test.servlet30.systest;
 
-package com.sun.faces.i_gf_11636_htmlunit;
-
+import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import java.util.regex.Pattern;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import com.sun.faces.htmlunit.HtmlUnitFacesTestCase;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+public class RegressionsIT {
 
+    private String webUrl;
+    private WebClient webClient;
 
-public class IssueGlassFish11636TestCase extends HtmlUnitFacesTestCase {
-
-    public IssueGlassFish11636TestCase(String name) {
-        super(name);
+    @Before
+    public void setUp() {
+        webUrl = System.getProperty("integration.url");
+        webClient = new WebClient();
     }
 
-
-    /**
-     * Return the tests included in this test suite.
-     */
-    public static Test suite() {
-        return (new TestSuite(IssueGlassFish11636TestCase.class));
+    @After
+    public void tearDown() {
+        webClient.closeAllWindows();
     }
 
-
-    // ------------------------------------------------------------ Test Methods
-
-    public void testBasicAppFunctionality() throws Exception {
-        
-        HtmlPage page = getPageWithRetry("/i_gf_11636.page", 10);
-        
-        String text = page.asText();
-        assertTrue(text.matches("(?s).*bean:\\s*bar.*"));
-
+    @Test
+    public void testAreaTextRowsAttrTest() throws Exception {
+        webClient.setThrowExceptionOnFailingStatusCode(false);
+        HtmlPage page = webClient.getPage(webUrl + "faces/regression/AreaTextRowsAttrTest.jsp");
+        assertTrue(Pattern.matches("(?s).*<html>\\s*<head>\\s*<title>\\s*Text\\s*Area\\s*Row\\s*Attribute\\s*Regression\\s*Test\\s*</title>\\s*</head>\\s*<body>\\s*<textarea\\s*name=\".*\"\\s*rows=\"30\">\\s*</textarea>\\s*</body>\\s*</html>.*", page.asXml()));
     }
 
-
+    @Test
+    public void testSelectOneManySizeAttrTest() throws Exception {
+        webClient.setThrowExceptionOnFailingStatusCode(false);
+        HtmlPage page = webClient.getPage(webUrl + "faces/regression/SelectOneManySizeAttrTest.jsp");
+        assertTrue(Pattern.matches("(?s).*<html>\\s*<head>\\s*<title>\\s*Select.One,Many.ListBox\\s*Size\\s*Attribute\\s*Test\\s*</title>\\s*</head>\\s*<body>\\s*<select\\s*name=\".*\"\\s*size=\"5\">\\s*<option\\s*value=\"val1\">\\s*val1\\s*</option>\\s*</select>\\s*<select\\s*name=\".*\"\\s*multiple=\"multiple\"\\s*size=\"5\">\\s*<option\\s*value=\"val1\">\\s*val1\\s*</option>\\s*</select>\\s*</body>\\s*</html>.*", page.asXml()));
+    }
 }

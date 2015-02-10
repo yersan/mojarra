@@ -38,18 +38,14 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
-package com.sun.faces.systest.jsp.regressions;
+package com.sun.faces.test.servlet30.systest;
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.faces.htmlunit.HtmlUnitFacesITCase;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-
 public class RegressionsITCase extends HtmlUnitFacesITCase {
-
 
     public RegressionsITCase(String name) {
         super(name);
@@ -62,7 +58,5 @@ public class RegressionsITCase extends HtmlUnitFacesITCase {
     public void test04() throws Exception {
         HtmlPage page = getPage("/faces/regression/InjectUserDefJS.jsp");
         assertTrue(page.asXml().matches("(?s).*\\s*<body>\\s*<form.*<input\\s*type=\"hidden\".*<input\\s*type=\"hidden\"\\s*name=\"javax.faces.ViewState\".*<script.*jsf.js.*<a\\s*href.*Are you sure.*>\\s*Link\\s*</a>\\s*<input\\s*type=\"submit\".*value=\"Button\"\\s*onclick=\"alert.*Are you sure.*</form>\\s*</body>.*"));
-
     }
-
 }

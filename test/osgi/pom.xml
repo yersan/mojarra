@@ -4,7 +4,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -63,6 +63,8 @@
     </dependencies>
     <modules>
         <module>simple</module>
+        <module>wabJar</module>
+        <module>wabWar</module>
     </modules>
     <profiles>
          <profile>
@@ -82,11 +84,14 @@
                                 <configuration>
                                     <target>
                                         <echo>=== Deploying ${project.build.finalName} ===</echo>
+                                        <echo file="${glassfish.osgi.deploy.home}/password.txt" append="false">
+AS_ADMIN_PASSWORD=adminadmin                                           
+                                        </echo>
                                         <exec executable="${glassfish.osgi.deploy.home}/glassfish/bin/asadmin.bat" osfamily="windows">
-                                            <arg line="deploy --force --osgi ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war"/>
                                         </exec>
                                         <exec executable="${glassfish.osgi.deploy.home}/glassfish/bin/asadmin" osfamily="unix">
-                                            <arg line="deploy --force --osgi ${project.build.directory}/${project.build.finalName}.war"/>
+                                            <arg line="deploy --force --passwordfile ${glassfish.osgi.deploy.home}/password.txt --type osgi ${project.build.directory}/${project.build.finalName}.war"/>
                                         </exec>
                                     </target>
                                 </configuration>
