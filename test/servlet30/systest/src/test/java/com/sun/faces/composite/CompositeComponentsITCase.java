@@ -101,180 +101,6 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
         assertTrue(page.asText().contains("isCompositeComponent: true"));
     }
 
-    /**
-     * <p>
-     *  Maps ActionListener to commandButton within composite/actionSource1.xhtml using
-     *   only the name attribute.
-     * </p>
-     */
-    public void testActionSource1() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/actionsource.xhtml");
-//        validateActionMessagePresent(page,
-//                                     "form:actionsource1:command");
-//
-    }
-
-
-    /**
-     * <p>
-     *   Maps ActionListener to commandButton within composite/actionSource2.xhtml using
-     *   name and target attributes.
-     * </p>
-     */
-    public void testActionSource2() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/actionsource.xhtml");
-//        validateActionMessagePresent(page,
-//                                     "form:actionsource2:ac2");
-//
-    }
-
-
-    /**
-     * <p>
-     *  Maps ActionListener to a commandButton within a composite/actionSource1.xhtml
-     *   which is nested within composite/actionSource3.xhtml. Using the same ID
-     *   in the nesting.
-     * </p>
-     */
-    public void testActionSource3() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/actionsource.xhtml");
-//        validateActionMessagePresent(page,
-//                                     "form:actionsource3:command:command");
-//        
-    }
-
-
-    /**
-     * <p>
-     *  Ensure actionListeners are properly re-targeted when the
-     *  target of the actionListener is nested within another naming
-     *  container.  Note that the value of the 'for' attribute doesn't
-     *  mimic the NamingContainer hierarchy, that's handled by the
-     *  'targets' attribute within the composite:implementation section
-     *  of actionSource4.xhtml.
-     * </p>
-     */
-    public void testActionSource4() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/actionsource.xhtml");
-//        validateActionMessagePresent(page,
-//                                     "form:actionsource4:naming:command");
-//        
-    }
-
-
-    /**
-     * <p>
-     *  Maps Validator to inputText within composite/validator1.xhtml using
-     *   only the name attribute.
-     * </p>
-     */
-    public void testValidator1() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/attachedvalidator.xhtml");
-//        validateValidatorMessagePresent(page,
-//                                        "form:s1",
-//                                        "form:validator1:input");
-//
-    }
-
-
-    /**
-     * <p>
-     *   Maps Validator to inputText within composite/validator2.xhtml using
-     *   name and target attributes.
-     * </p>
-     */
-    public void testValidator2() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/attachedvalidator.xhtml");
-//        validateValidatorMessagePresent(page,
-//                                        "form2:s2",
-//                                        "form2:validator2:it2");
-//
-    }
-
-
-    /**
-     * <p>
-     *   Maps Validator to inputText within composite/validator2.xhtml using
-     *   name and target attributes.
-     * </p>
-     */
-    public void testValidator3() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/attachedvalidator.xhtml");
-//        validateValidatorMessagePresent(page,
-//                                        "form3:s3",
-//                                        "form3:validator3:input:input");
-//
-    }
-
-
-    /**
-     * <p>
-     *  Ensure validators are properly re-targeted when the
-     *  target of the validator is nested within another naming
-     *  container.  Note that the value of the 'for' attribute doesn't
-     *  mimic the NamingContainer hierarchy, that's handled by the
-     *  'targets' attribute within the composite:implementation section
-     *  of validator4.xhtml.
-     * </p>
-     */
-    public void testValidator4() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/attachedvalidator.xhtml");
-//        validateValidatorMessagePresent(page,
-//                                        "form4:s4",
-//                                        "form4:validator4:naming:input");
-//
-    }
-
-    /**
-     * <p>
-     *  Maps Converter to inputText within composite/validator1.xhtml using
-     *   only the name attribute.
-     * </p>
-     *
-     * <p>
-     *   Maps Converter to inputText within composite/validator2.xhtml using
-     *   name and target attributes.
-     * </p>
-     *
-     * <p>
-     *   Maps Converter to inputText within composite/validator2.xhtml using
-     *   name and target attributes.
-     * </p>
-     *
-     * <p>
-     *  Ensure validators are properly re-targeted when the
-     *  target of the validator is nested within another naming
-     *  container.  Note that the value of the 'for' attribute doesn't
-     *  mimic the NamingContainer hierarchy, that's handled by the
-     *  'targets' attribute within the composite:implementation section
-     *  of validator4.xhtml.
-     * </p>
-     */
-    public void testConverters() throws Exception {
-//
-//        String[] messageSuffixes = new String[] {
-//              "form:converter1:input",
-//              "form2:converter2:it2",
-//              "form3:converter3:input:input",
-//              "form4:converter4:naming:input"
-//        };
-//
-//        HtmlPage page = getPage("/faces/composite/attachedconverter.xhtml");
-//        validateConverterMessages(page, messageSuffixes);
-//        page = pushButton(page, "cf:clear");
-//        validateConverterMessages(page, messageSuffixes);
-//
-    }
-
-
     public void testActions() throws Exception {
 
         final String[] commandIds = {
@@ -433,58 +259,25 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
 
 
     public void testNesting04() throws Exception {
-//
-//        HtmlPage page = getPage("/faces/composite/nesting04.xhtml");
-//        List<HtmlSpan> spans = new ArrayList<HtmlSpan>(3);
-//        getAllElementsOfGivenClass(page, spans, HtmlSpan.class);
-//        assertEquals(3, spans.size());
-//        assertEquals("static", spans.get(0).asText());
-//        assertEquals("com.sun.faces.context.FacesContextImpl", spans.get(1).asText());
-//        assertEquals("form:nesting4", spans.get(2).asText());
-//
-//        HtmlSubmitInput input = (HtmlSubmitInput) getInputContainingGivenId(page, "form:sub");
-//        page = input.click();
-//        spans.clear();
-//         getAllElementsOfGivenClass(page, spans, HtmlSpan.class);
-//        assertEquals(3, spans.size());
-//        assertEquals("static", spans.get(0).asText());
-//        assertEquals("com.sun.faces.context.FacesContextImpl", spans.get(1).asText());
-//        assertEquals("form:nesting4", spans.get(2).asText());
-//        
-    }
 
+        HtmlPage page = getPage("/faces/composite/nesting04.xhtml");
+        List<HtmlSpan> spans = new ArrayList<HtmlSpan>(3);
+        getAllElementsOfGivenClass(page, spans, HtmlSpan.class);
+        assertEquals(3, spans.size());
+        assertEquals("static", spans.get(0).asText());
+        assertEquals("com.sun.faces.context.FacesContextImpl", spans.get(1).asText());
+        assertEquals("form:nesting4", spans.get(2).asText());
 
-    public void testNesting05() throws Exception {
-
-//        HtmlPage page = getPage("/faces/composite/nesting05.xhtml");
-//        HtmlSubmitInput submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting6:nesting7:form1:command");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("Action invoked"));
-//
-//        page = getPage("/faces/composite/nesting05.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting6:nesting7:form2:command2");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("ActionListener invoked"));
-//
-//        page = getPage("/faces/composite/nesting05.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting6:nesting7:form3:command3");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("Custom action invoked"));
-//
-//        page = getPage("/faces/composite/nesting05.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting6:nesting7:form4:command");
-//        HtmlTextInput text = (HtmlTextInput) getInputContainingGivenId(page, "nesting6:nesting7:form4:input");
-//        text.setValueAttribute("foo");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("validator invoked"));
-//
-//        page = getPage("/faces/composite/nesting05.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting6:nesting7:form5:command");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("ValueChange invoked"));
+        HtmlSubmitInput input = (HtmlSubmitInput) getInputContainingGivenId(page, "form:sub");
+        page = input.click();
+        spans.clear();
+         getAllElementsOfGivenClass(page, spans, HtmlSpan.class);
+        assertEquals(3, spans.size());
+        assertEquals("static", spans.get(0).asText());
+        assertEquals("com.sun.faces.context.FacesContextImpl", spans.get(1).asText());
+        assertEquals("form:nesting4", spans.get(2).asText());
         
     }
-
 
     public void testNesting06() throws Exception {
         HtmlPage page = getPage("/faces/composite/addPhaseListener.xhtml");
@@ -520,43 +313,6 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
         }
         
     }
-
-
-    /**
-     * Added for issue 1255.
-     */
-    public void testNesting08() throws Exception {
-
-//        HtmlPage page = getPage("/faces/composite/nesting06.xhtml");
-//        HtmlSubmitInput submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form1:command");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("Action invoked"));
-//
-//        page = getPage("/faces/composite/nesting06.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form2:command2");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("ActionListener invoked"));
-//
-//        page = getPage("/faces/composite/nesting06.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form3:command3");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("Custom action invoked"));
-//
-//        page = getPage("/faces/composite/nesting06.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form4:command");
-//        HtmlTextInput text = (HtmlTextInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form4:input");
-//        text.setValueAttribute("foo");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("validator invoked"));
-//
-//        page = getPage("/faces/composite/nesting06.xhtml");
-//        submit = (HtmlSubmitInput) getInputContainingGivenId(page, "nesting10:nesting6:nesting7:form5:command");
-//        page = submit.click();
-//        assertTrue(page.asText().contains("ValueChange invoked"));
-
-    }
-    
-
 
     public void testChildrenAndFacets() throws Exception {
 
@@ -764,9 +520,9 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
     }
 
     public void testMetadataCache() throws Exception {
-//        HtmlPage page = getPage("/faces/composite/boostrapCompositeComponentMetadata.xhtml");
-//        String text = page.asText();
-//        assertTrue(text.contains("First call longer than second call"));
+        HtmlPage page = getPage("/faces/composite/boostrapCompositeComponentMetadata.xhtml");
+        String text = page.asText();
+        assertTrue(text.contains("First call longer than second call"));
     }
 
     public void testMethodExprNotRequired() throws Exception {
@@ -904,25 +660,6 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
 
     }
 
-
-    /**
-     * Added for issue 1298.
-     */
-    /*
-    public void testMethodExpressionNesting() throws Exception {
-
-        HtmlPage page = getPage("/faces/composite/nesting08.xhtml");
-
-        HtmlSubmitInput button = (HtmlSubmitInput) getInputContainingGivenId(page, "form:submit");
-        assertNotNull(button);
-
-        page = button.click();
-        assertTrue(page.asText().contains("Action invoked"));
-
-    }
-    */
-
-
     public void testMethodExpressionDefaults() throws Exception {
 
         HtmlPage page = getPage("/faces/composite/defaultAttributeMethodExpression.xhtml");
@@ -966,19 +703,33 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
         assertTrue(pageText.contains("valueChangeListener value is"));
     }
 
+    /*
+     * Because this test relies on a message added by the runtime that only happens
+     * during ProjectStage.Development this test should only be executed on 
+     * ProjectStage.Development.
+     */
     public void testMissingRequiredAttribute() throws Exception {
-//        client.setThrowExceptionOnFailingStatusCode(false);
-//        HtmlPage page = getPage("/faces/composite/requiredAttribute.xhtml");
-//        String text = page.asText();
-//        assertTrue(text.contains("<ez:required01>"));
-//        assertTrue(text.contains("The following attribute(s) are required, but no values have been supplied for them: table."));
+        client.setThrowExceptionOnFailingStatusCode(false);
+        HtmlPage page = getPage("/faces/composite/requiredAttribute.xhtml");
+        String text = page.asText();
+        if (page.asXml().contains("Development")) {
+            assertTrue(text.contains("<ez:required01>"));
+            assertTrue(text.contains("The following attribute(s) are required, but no values have been supplied for them: table."));
+        }
     }
-    
+
+    /*
+     * Because this test relies on a message added by the runtime that only happens
+     * during ProjectStage.Development this test should only be executed on 
+     * ProjectStage.Development.
+     */
     public void testMissingRequiredFacet() throws Exception {
-//        client.setThrowExceptionOnFailingStatusCode(false);
-//        HtmlPage page = getPage("/faces/composite/requiredFacet.xhtml");
-//        String text = page.asText();
-//        assertTrue(text.contains("The following facets(s) are required, but no facets have been supplied for them: table."));
+        client.setThrowExceptionOnFailingStatusCode(false);
+        HtmlPage page = getPage("/faces/composite/requiredFacet.xhtml");
+        String text = page.asText();
+        if (page.asXml().contains("Development")) {
+            assertTrue(text.contains("The following facets(s) are required, but no facets have been supplied for them: table."));
+        }
     }
 
     public void testDefaultAttributeValueELOverrides() throws Exception {
@@ -994,19 +745,6 @@ public class CompositeComponentsITCase extends HtmlUnitFacesITCase {
         System.out.println(text);
         assertTrue(text.matches("(?s).*Message:.*Received.*event:.*javax.faces.event.PreRenderViewEvent.*for.*component:.*javax.faces.component.UIViewRoot.*"));
 
-    }
-
-    //issue 1696
-    public void testForNoNPE() throws Exception {
-//        HtmlPage page = getPage("/faces/composite/simpleCompositeComponentUsingPage.xhtml");
-//        List list = getAllElementsOfGivenClass(page, null,
-//                HtmlSubmitInput.class);
-//        HtmlSubmitInput button = (HtmlSubmitInput) list.get(0);
-//        page = (HtmlPage) button.click();
-//        String pageAsText = page.asText();
-//        assertTrue(pageAsText.contains("Unable to find matching navigation case with from-view-id " +
-//                "'/composite/simpleCompositeComponentUsingPage.xhtml' for action '#{hello.getNextAction}' " +
-//                "with outcome '/submit.xhtml'"));
     }
 
     public void testDefaultAttributeValues() throws Exception {
