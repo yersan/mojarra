@@ -39,53 +39,38 @@
  */
 package com.sun.faces.test.servlet40.facelets;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.sun.faces.test.junit.JsfTest;
+import static java.util.Arrays.asList;
 
-import java.util.regex.Pattern;
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Iterator;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import javax.faces.bean.ManagedBean;
 
-import static com.sun.faces.test.junit.JsfVersion.JSF_2_3_0_M02;
-import static org.junit.Assert.*;
+@ManagedBean
+public class CollectionBean {
 
-public class Spec1103IT {
-
-    private String webUrl;
-    private WebClient webClient;
-
-    @Before
-    public void setUp() {
-        webUrl = System.getProperty("integration.url");
-        webClient = new WebClient();
+    public Collection<Integer> getCollection() {
+        return new TestCollection<>(asList(1, 2, 3));
     }
 
-    @After
-    public void tearDown() {
-        webClient.closeAllWindows();
+    private static class TestCollection<E> extends AbstractCollection<E> {
+
+        private final Collection<E> collection;
+
+        public TestCollection(Collection<E> collection) {
+            this.collection = collection;
+        }
+
+        @Override
+        public Iterator<E> iterator() {
+            return collection.iterator();
+        }
+
+        @Override
+        public int size() {
+            return collection.size();
+        }
     }
 
-    @Test
-    @JsfTest(value = JSF_2_3_0_M02)
-    public void testDataTableIterable() throws Exception {
-        HtmlPage page = webClient.getPage(webUrl + "faces/datatableIterable.xhtml");
-        assertTrue(Pattern.matches("(?s).*START.*0.*1.*2.*END.*", page.asXml()));
-    }
-    
-    @Test
-    @JsfTest(value = JSF_2_3_0_M02)
-    public void testUIRepeatIterable() throws Exception {
-        HtmlPage page = webClient.getPage(webUrl + "faces/uirepeatIterable.xhtml");
-        assertTrue(Pattern.matches("(?s).*START.*0.*1.*2.*END.*", page.asXml()));
-    }
-    
-    @Test
-    @JsfTest(value = JSF_2_3_0_M02)
-    public void testUIRepeatCollection() throws Exception {
-        HtmlPage page = webClient.getPage(webUrl + "faces/uirepeatCollection.xhtml");
-        assertTrue(Pattern.matches("(?s).*START.*1.*2.*3.*END.*", page.asXml()));
-    }
 }

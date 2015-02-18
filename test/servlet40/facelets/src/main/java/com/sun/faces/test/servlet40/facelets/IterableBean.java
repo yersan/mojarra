@@ -46,36 +46,36 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class IterableBean {
 
-	public Iterable<Integer> getIterable() {
-		return new TestIterable();
-	}
+    public Iterable<Integer> getIterable() {
+        return new TestIterable();
+    }
 
-	private static class TestIterable implements Iterable<Integer> {
+    private static class TestIterable implements Iterable<Integer> {
 
-		@Override
-		public Iterator<Integer> iterator() {
-			return new Iterator<Integer>() {
+        @Override
+        public Iterator<Integer> iterator() {
+            return new Iterator<Integer>() {
 
-				int index = 0;
+                int index = 0;
 
-				@Override
-				public boolean hasNext() {
-					return index < 3;
-				}
+                @Override
+                public boolean hasNext() {
+                    return index < 3;
+                }
 
-				@Override
-				public Integer next() {
-					return index++;
-				}
+                @Override
+                public Integer next() {
+                    return index++;
+                }
 
-				@Override
-				public void remove() {
-					throw new UnsupportedOperationException();
-				}
+                @Override
+                public void remove() {
+                    throw new UnsupportedOperationException();
+                }
 
-			};
-		}
+            };
+        }
 
-	}
-	
+    }
+
 }
