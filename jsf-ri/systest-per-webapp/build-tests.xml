@@ -67,10 +67,6 @@
               value="com/sun/faces/systest/FlashTestCase.class"/>
     <property name="jsp-flash"
               value="com/sun/faces/systest/JspFlashTestCase.class"/>
-    <property name="replace-application"
-              value="com/sun/faces/systest/ReplaceApplicationTestCase.class"/>
-    <property name="replace-statemanager"
-              value="com/sun/faces/systest/ReplaceStateManagerTestCase.class"/>
     <property name="invalid-mapping"
               value="com/sun/faces/systest/InvalidMappingTestCase.class"/>
     <property name="nested-datatables"
@@ -79,18 +75,8 @@
               value="com/sun/faces/systest/NestedLoadBundlesTestCase.class"/>
     <property name="jar-ordering"
               value="com/sun/faces/systest/JarOrderingTestCase.class"/>
-    <property name="replace-lifecycle"
-              value="com/sun/faces/systest/ReplaceLifecycleTestCase.class"/>
-    <property name="string-converter"
-              value="com/sun/faces/systest/StringConverterTestCase.class"/>
-    <property name="replace-variableresolver" 
-              value="com/sun/faces/systest/ReplaceVariableResolverTestCase.class"/>
-    <property name="replace-variableresolver-programmatically" 
-              value="com/sun/faces/systest/ReplaceVariableResolverTestCase.class"/>
     <property name="add-er-replace-vr" 
               value="com/sun/faces/systest/AddELResolverAndReplaceVariableresolverProgrammaticallyTestCase.class"/>
-    <property name="replace-vr-add-er" 
-              value="com/sun/faces/systest/ReplaceVariableResolverAndAddELResolverProgrammaticallyTestCase.class"/>
     <property name="converter-property-editor" 
               value="com/sun/faces/systest/ConverterPropertyEditorTestCase.class"/>
     <property name="late-bindings"
@@ -101,24 +87,16 @@
               value="com/sun/faces/systest/NeverUnwrapExceptionsTestCase.class"/>
     <property name="disable-unicode-escaping"
               value="com/sun/faces/systest/UnicodeTestCase.class"/>
-    <property name="wcag-datatable"
-              value="com/sun/faces/systest/WcagDataTableTestCase.class"/>
     <property name="disable-bean-validator"
               value="com/sun/faces/systest/DisableBeanValidatorTestCase.class"/>
     <property  name="no-web-xml"
                value="com/sun/faces/systest/NoWebXMLTestCase.class" />
     <property  name="injection"
                value="com/sun/faces/systest/InjectionTestCase.class" />
-    <property  name="suppress-xml-decl"
-               value="com/sun/faces/systest/SuppressXmlDeclTestCase.class" />
     <property  name="myfaces-uidata-component-state-test"
                value="com/sun/faces/systest/myfaces_uidata_component_state_test/MyFacesUIDataTestCase.class" />
     <property  name="process-as-jspx"
                value="com/sun/faces/systest/ProcessAsJspxTestCase.class" />
-    <property  name="request-char-encoding-no-session"
-               value="com/sun/faces/systest/NoSessionCharEncTestCase.class" />
-    <property  name="request-char-encoding-no-session"
-               value="com/sun/faces/systest/NoSessionCharEncTestCase.class" />
     <property  name="bogus-render-kit-id"
                value="com/sun/faces/systest/render/BogusRenderKitIdTestCase.class" />
     <property  name="characterCombat"
@@ -133,8 +111,6 @@
 
         <property name="core-tags
                   value="com/sun/faces/systest/CoreTagsTestCase.class"/>
-        <property name="view-expired"
-                  value="com/sun/faces/systest/ViewExpiredExceptionTestCase.class"/>
     -->
 
 

@@ -75,8 +75,12 @@
         <module>contractUsingViewRoot</module>
         <module>custom-viewroot-viewscope</module>
         <module>customFaceletsResolver</module>
+        <module>customLifecycle</module>
         <module>customResolvers</module>
         <module>customResourcesDirectory</module>
+        <module>customStateManager</module>
+        <module>customVariableResolver</module>
+        <module>customVariableResolverProgrammatically</module>
         <module>customViewHandler</module>
         <module>disableIdUniqueness</module>
         <module>doctypeHtml5</module>
@@ -103,12 +107,17 @@
         <module>navigation</module>
         <module>passthrough</module>
         <module>renderKit</module>
+        <module>requestCharEncodingNoSession</module>
         <module>resource</module>
         <module>serializeServerState</module>
         <module>sessionScope</module>
-        <module>systest</module>
         <module>stateViewExpiredExceptionMissing</module>
+        <module>stringConverter</module>
+        <module>suppressXmlDeclaration</module>
+        <module>systest</module>
+        <module>viewExpiredException</module>
         <module>viewScopeFailover</module>
+        <module>wcagDataTable</module>
         <module>writeAttributeScriptDisabled</module>
         <module>writeAttributeScriptEnabled</module>
     </modules>
