@@ -52,11 +52,9 @@
         <artifactId>pom</artifactId>
         <version>2.3.0-m02-SNAPSHOT</version>
     </parent>
-    
     <artifactId>facelets</artifactId>
     <packaging>war</packaging>	
     <name>Mojarra ${project.version} - Test - Servlet 4.0 - Facelets</name>
-    
     <build>
         <finalName>test-servlet40-facelets</finalName>
     </build>
