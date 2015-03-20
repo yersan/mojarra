@@ -73,40 +73,27 @@
               value="" />
 
     <property name="applications-for-V3-only"
-              value="disable-bean-validator,
-                     no-web-xml" />
+              value="disable-bean-validator" />
 
     <property name="applications-for-V3.1-only"
               value="disable-bean-validator,
                      injection,
-                     no-web-xml,
                      cluster-no-agressive-session-dirtying" />
 
     <property name="applications-for-V3.1_no_cluster-only"
               value="disable-bean-validator,
-                     injection,
-                     no-web-xml" />
+                     injection" />
 
     <property name="container-agnostic-applications"
               value="
                    find-resources-in-jar,
-                   annotation-restrictions,
                    clientside-statesaving,
                    absolute-ordering,
                    document-ordering,
-                   nested-loadbundles,
-                   invalid-mapping,
-                   nested-datatables,
-                   jar-ordering,
                    add-er-replace-vr,
                    converter-property-editor,
                    disable-unicode-escaping,
-                   late-bindings,
-                   property-resolver-jsp,
-                   never-unwrap-exceptions,
                    flash,
-                   jsp-flash,
-                   process-as-jspx,
                    bogus-render-kit-id,
                    characterCombat"/>
     <!--
@@ -116,23 +103,13 @@
           el-performance
           command-link-redirect,
                    flash,
-                   jsp-flash
     -->
 
    <property name="applications-for-V3.1_no_cluster-virtual-server"
              value="
                    find-resources-in-jar,
-                   annotation-restrictions,
                    clientside-statesaving,
-                   nested-loadbundles,
-                   invalid-mapping,
-                   nested-datatables,
-                   jar-ordering,
                    converter-property-editor,
-                   late-bindings,
-                   property-resolver-jsp,
-                   never-unwrap-exceptions,
-                   process-as-jspx,
                    bogus-render-kit-id,
                    characterCombat"/>
 

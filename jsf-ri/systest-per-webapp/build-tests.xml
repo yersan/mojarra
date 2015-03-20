@@ -55,8 +55,6 @@
     <import file="${jsf.build.home}/common/ant/common.xml"/>
 
     <!-- Property definitions to map the application to a JUnit test case -->
-    <property  name="annotation-restrictions"
-               value="com/sun/faces/systest/AnnotationProcessingTestCase.class" />
     <property name="absolute-ordering"
               value="com/sun/faces/systest/AbsoluteOrderingTestCase.class"/>
     <property name="clientside-statesaving"
@@ -65,38 +63,18 @@
               value="com/sun/faces/systest/DocumentOrderingTestCase.class"/>
     <property name="flash"
               value="com/sun/faces/systest/FlashTestCase.class"/>
-    <property name="jsp-flash"
-              value="com/sun/faces/systest/JspFlashTestCase.class"/>
-    <property name="invalid-mapping"
-              value="com/sun/faces/systest/InvalidMappingTestCase.class"/>
-    <property name="nested-datatables"
-              value="com/sun/faces/systest/NestedDatatablesTestCase.class"/>
-    <property name="nested-loadbundles"
-              value="com/sun/faces/systest/NestedLoadBundlesTestCase.class"/>
-    <property name="jar-ordering"
-              value="com/sun/faces/systest/JarOrderingTestCase.class"/>
     <property name="add-er-replace-vr" 
               value="com/sun/faces/systest/AddELResolverAndReplaceVariableresolverProgrammaticallyTestCase.class"/>
     <property name="converter-property-editor" 
               value="com/sun/faces/systest/ConverterPropertyEditorTestCase.class"/>
-    <property name="late-bindings"
-              value="com/sun/faces/systest/LateBindingTestCase.class"/>
-    <property name="property-resolver-jsp"
-              value="com/sun/faces/systest/PropertyResolverJspTestCase.class"/>
-    <property name="never-unwrap-exceptions"
-              value="com/sun/faces/systest/NeverUnwrapExceptionsTestCase.class"/>
     <property name="disable-unicode-escaping"
               value="com/sun/faces/systest/UnicodeTestCase.class"/>
     <property name="disable-bean-validator"
               value="com/sun/faces/systest/DisableBeanValidatorTestCase.class"/>
-    <property  name="no-web-xml"
-               value="com/sun/faces/systest/NoWebXMLTestCase.class" />
     <property  name="injection"
                value="com/sun/faces/systest/InjectionTestCase.class" />
     <property  name="myfaces-uidata-component-state-test"
                value="com/sun/faces/systest/myfaces_uidata_component_state_test/MyFacesUIDataTestCase.class" />
-    <property  name="process-as-jspx"
-               value="com/sun/faces/systest/ProcessAsJspxTestCase.class" />
     <property  name="bogus-render-kit-id"
                value="com/sun/faces/systest/render/BogusRenderKitIdTestCase.class" />
     <property  name="characterCombat"
