@@ -40,11 +40,14 @@
 package com.sun.faces.cdi;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.faces.component.behavior.Behavior;
 import javax.faces.convert.Converter;
+import javax.faces.model.DataModel;
 import javax.faces.validator.Validator;
 
 /**
@@ -149,6 +152,32 @@ public final class CdiUtils {
         }
     
         return delegatingValidator;
+    }
+    
+    public static DataModel<?> createDataModel(BeanManager beanManager, Class<?> forClass) {
+        
+        ParameterizedType dataModelType = new ParameterizedTypeImpl(DataModel.class, new Type[] { forClass });
+        
+        Object dataModel = getBeanReference(beanManager, dataModelType, null);
+        if (dataModel == null) {
+            // check super classes here
+        }
+        
+        return (DataModel<?>) dataModel;  
+    }
+    
+    public static Object getBeanReference(BeanManager beanManager, Type type, Annotation qualifier) {
+        
+        Object beanReference = null;
+              
+        Bean<?> bean = beanManager.resolve(beanManager.getBeans(type, qualifier));
+        if (bean != null) {
+            beanReference = beanManager.getReference(
+                bean, type, beanManager.createCreationalContext(bean)
+            );
+        }
+                
+        return beanReference;
     }
     
     /**
