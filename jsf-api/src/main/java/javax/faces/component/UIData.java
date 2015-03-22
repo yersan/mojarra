@@ -40,6 +40,8 @@
 
 package javax.faces.component;
 
+import static com.sun.faces.util.Util.getCdiBeanManager;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -77,6 +79,9 @@ import javax.faces.model.ResultDataModel;
 import javax.faces.model.ResultSetDataModel;
 import javax.faces.model.ScalarDataModel;
 import javax.servlet.jsp.jstl.sql.Result;
+
+import com.sun.faces.cdi.CdiUtils;
+import com.sun.faces.util.Util;
 
 
 
@@ -1851,7 +1856,12 @@ public class UIData extends UIComponentBase
         } else if (current instanceof Map) {
             setDataModel(new IterableDataModel<>(((Map<?, ?>) current).entrySet()));
         } else {
-            setDataModel(new ScalarDataModel(current));
+            DataModel<?> dataModel = CdiUtils.createDataModel(getCdiBeanManager(getFacesContext()), current.getClass());
+            if (dataModel != null) {
+                setDataModel(dataModel);
+            } else {
+                setDataModel(new ScalarDataModel(current));
+            }
         }
         return (model);
 

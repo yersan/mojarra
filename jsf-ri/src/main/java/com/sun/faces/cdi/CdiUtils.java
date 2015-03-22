@@ -154,50 +154,41 @@ public final class CdiUtils {
         return delegatingValidator;
     }
     
-    public static DataModel<?> createDataModel(BeanManager beanManager, Class<?> forClass) {
-        
-        ParameterizedType dataModelType = new ParameterizedTypeImpl(DataModel.class, new Type[] { forClass });
-        
-        Object dataModel = getBeanReference(beanManager, dataModelType, null);
-        if (dataModel == null) {
-            // check super classes here
-        }
-        
-        return (DataModel<?>) dataModel;  
-    }
-    
-    public static Object getBeanReference(BeanManager beanManager, Type type, Annotation qualifier) {
-        
-        Object beanReference = null;
-              
-        Bean<?> bean = beanManager.resolve(beanManager.getBeans(type, qualifier));
-        if (bean != null) {
-            beanReference = beanManager.getReference(
-                bean, type, beanManager.createCreationalContext(bean)
+    public static DataModel<?> createDataModel(final BeanManager beanManager, final Class<?> forClass) {
+
+        Object dataModel = null;
+
+        for (Class<?> currentClass = forClass; dataModel == null && currentClass != null; currentClass = currentClass.getSuperclass()) {
+            dataModel = getBeanReferenceByType(
+                beanManager, 
+                new ParameterizedTypeImpl(DataModel.class, new Type[] { currentClass }), 
+                new FacesDataModelAnnotationLiteral()
             );
         }
-                
-        return beanReference;
+
+        return (DataModel<?>) dataModel;
     }
-    
+
     /**
      * 
-     * @param beanManager the bean manager
+     * @param beanManagert the bean manager
      * @param type the required bean type the reference must have
      * @param qualifier the required qualifiers the reference must have
      * @return a bean reference adhering to the required type and qualifiers
      */
     public static <T> T getBeanReference(BeanManager beanManager, Class<T> type, Annotation qualifier) {
-        
+        return type.cast(getBeanReferenceByType(beanManager, type, qualifier));
+    }
+
+    public static Object getBeanReferenceByType(BeanManager beanManager, Type type, Annotation qualifier) {
+
         Object beanReference = null;
-              
+
         Bean<?> bean = beanManager.resolve(beanManager.getBeans(type, qualifier));
         if (bean != null) {
-            beanReference = beanManager.getReference(
-                bean, type, beanManager.createCreationalContext(bean)
-            );
+            beanReference = beanManager.getReference(bean, type, beanManager.createCreationalContext(bean));
         }
-                
-        return type.cast(beanReference);
+
+        return beanReference;
     }
 }
