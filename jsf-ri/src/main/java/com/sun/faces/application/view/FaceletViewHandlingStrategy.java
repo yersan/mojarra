@@ -42,6 +42,8 @@ package com.sun.faces.application.view;
 
 import com.sun.faces.RIConstants;
 import com.sun.faces.application.ApplicationAssociate;
+import com.sun.faces.config.WebConfiguration;
+import com.sun.faces.config.WebConfiguration.WebContextInitParameter;
 import com.sun.faces.context.StateContext;
 import javax.faces.view.facelets.Facelet;
 import com.sun.faces.facelets.el.ContextualCompositeMethodExpression;
@@ -548,6 +550,9 @@ public class FaceletViewHandlingStrategy extends ViewHandlingStrategy {
                 viewRoot = vdl.createView(context, viewId);                
                 context.setViewRoot(viewRoot);
                 vdl.buildView(context, viewRoot);
+                if (!viewRoot.isTransient()) {
+                    throw new FacesException("Unable to restore view " + viewId);
+                }
                 return viewRoot;
             } catch (IOException ioe) {
                 throw new FacesException(ioe);
@@ -897,13 +902,13 @@ public class FaceletViewHandlingStrategy extends ViewHandlingStrategy {
              if (viewId.endsWith(RIConstants.FLOW_DEFINITION_ID_SUFFIX)) {
                  return true;
              }
-             
             // If there's no extensions array or prefixes array, then
             // assume defaults.  .xhtml extension is handled by
             // the FaceletViewHandler and .jsp will be handled by
             // the JSP view handler
             if ((extensionsArray == null) && (prefixesArray == null)) {
-                return (viewId.endsWith(ViewHandler.DEFAULT_FACELETS_SUFFIX));
+                boolean matched = isMatchedWithFaceletsSuffix(viewId)? true:(viewId.endsWith(ViewHandler.DEFAULT_FACELETS_SUFFIX));
+                return matched;
             }
 
             if (extensionsArray != null) {
@@ -923,6 +928,16 @@ public class FaceletViewHandlingStrategy extends ViewHandlingStrategy {
             }
         }
 
+        return false;
+    }
+
+    private boolean isMatchedWithFaceletsSuffix(String viewId) {
+        String[] defaultsuffixes = webConfig.getOptionValue(WebConfiguration.WebContextInitParameter.FaceletsSuffix, " ");
+        for ( String suffix :defaultsuffixes ) {
+            if (viewId.endsWith(suffix)) {
+                return true;
+            }                      
+        }
         return false;
     }
 
@@ -1133,7 +1148,7 @@ public class FaceletViewHandlingStrategy extends ViewHandlingStrategy {
 
             extensionsArray = new String[extensionsList.size()];
             extensionsList.toArray(extensionsArray);
-
+            
             prefixesArray = new String[prefixesList.size()];
             prefixesList.toArray(prefixesArray);
         }

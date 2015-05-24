@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sun.faces.test</groupId>
     <artifactId>pom</artifactId>
-    <version>2.3.0-m02-SNAPSHOT</version>
+    <version>2.3.0-m03-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Mojarra ${project.version} - Test</name>
     <prerequisites>
@@ -25,6 +25,7 @@
         <module>protocolaware</module>
         <module>quality</module>
         <module>servlet30</module>
+        <module>servlet30-isolated</module>
         <module>servlet31</module>
         <module>servlet40</module>
         <module>unit</module>
@@ -228,6 +229,40 @@
             </properties>
         </profile>
         <profile>
+            <id>glassfish-deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start-container</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>=== Deploying ${project.build.finalName} to ${glassfish.deploy.home} ===</echo>
+                                        <exec executable="${glassfish.deploy.home}/glassfish/bin/asadmin.bat" osfamily="windows">
+                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}"/>
+                                        </exec>
+                                        <exec executable="${glassfish.deploy.home}/glassfish/bin/asadmin" osfamily="unix">
+                                            <arg line="deploy --force ${project.build.directory}/${project.build.finalName}.${project.packaging}"/>
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+            <properties>
+                <glassfish.deploy.home>${user.home}/Glassfish4.1</glassfish.deploy.home>
+            </properties>
+        </profile>
+        <profile>
             <id>glassfish-patch</id>
             <build>
                 <plugins>
@@ -268,7 +303,75 @@
                 </dependency>
             </dependencies>
             <properties>
-                <glassfish.patch.home>C:/Glassfish4.0</glassfish.patch.home>
+                <glassfish.patch.home>${user.home}/Glassfish4.1</glassfish.patch.home>
+            </properties>
+        </profile>
+        <profile>
+            <id>glassfish-start</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start-container</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>=== Starting ${glassfish.start.home} ===</echo>
+                                        <exec executable="${glassfish.start.home}/glassfish/bin/asadmin.bat" osfamily="windows">
+                                            <arg line="start-domain"/>
+                                        </exec>
+                                        <exec executable="${glassfish.start.home}/glassfish/bin/asadmin" osfamily="unix">
+                                            <arg line="start-domain"/>
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+            <properties>
+                <glassfish.start.home>${user.home}/Glassfish4.1</glassfish.start.home>
+            </properties>
+        </profile>
+        <profile>
+            <id>glassfish-stop</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>stop-container</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>=== Stopping ${glassfish.stop.home} ===</echo>
+                                        <exec executable="${glassfish.stop.home}/glassfish/bin/asadmin.bat" osfamily="windows">
+                                            <arg line="stop-domain"/>
+                                        </exec>
+                                        <exec executable="${glassfish.stop.home}/glassfish/bin/asadmin" osfamily="unix">
+                                            <arg line="stop-domain"/>
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+            <properties>
+                <glassfish.stop.home>${user.home}/Glassfish4.1</glassfish.stop.home>
             </properties>
         </profile>
         <profile>
@@ -431,6 +534,7 @@
                                 <integration.serverProtocol>${integration.serverProtocol}</integration.serverProtocol>
                                 <integration.url>${integration.protocol}://${integration.serverName}:${integration.serverPort}/${project.build.finalName}/</integration.url>
                                 <jsf.version>${jsf.version}</jsf.version>
+                                <jsf.serverString>${jsf.serverString}</jsf.serverString>
                                 <project.build.finalName>${project.build.finalName}</project.build.finalName>
                                 <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
                             </systemPropertyVariables>

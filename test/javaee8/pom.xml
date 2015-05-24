@@ -47,7 +47,7 @@
     <parent>
         <groupId>com.sun.faces.test</groupId>
         <artifactId>pom</artifactId>
-        <version>2.3.0-m02-SNAPSHOT</version>
+        <version>2.3.0-m03-SNAPSHOT</version>
     </parent>
     <groupId>com.sun.faces.test.javaee8</groupId>
     <artifactId>pom</artifactId>
@@ -69,8 +69,10 @@
     </dependencies>    
     <modules>
         <module>cdi</module>
+        <module>disableFaceletToXhtmlMapping</module>
         <module>disableFaceletsViewHandler</module>
         <module>disableFaceletsViewHandlerDeprecated</module>
         <module>el</module>
+        <module>xhtmlMappingToFaceletByDefault</module>
     </modules>
 </project>
