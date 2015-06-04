@@ -69,6 +69,7 @@
         <module>ajax</module>
         <module>ajaxNamespace</module>
         <module>annotationRestrictions</module>
+        <module>application</module>
         <module>appUsingJarWithExactlyTwoContracts</module>
         <module>bogusRenderKitId</module>
         <module>characterCombat</module>
@@ -117,10 +118,13 @@
         <module>initRequestParameterMap</module>
         <module>invalidMapping</module>
         <module>lateBindings</module>
+        <module>listener</module>
         <module>localeConfig</module>
         <module>multiTenantSetsTccl</module>
         <module>multiTenantUsesFactoryFinder</module>
         <module>navigation</module>
+        <module>navigation2</module>
+        <module>navigation3</module>
         <module>nestedDataTables</module>
         <module>nestedLoadBundles</module>
         <module>neverUnwrapExceptions</module>
@@ -131,6 +135,7 @@
         <module>requestCharEncodingNoSession</module>
         <module>resource</module>
         <module>resourceExposure</module>
+        <module>runtimeConfig</module>
         <module>serializeServerState</module>
         <module>sessionScope</module>
         <module>stateViewExpiredExceptionMissing</module>
