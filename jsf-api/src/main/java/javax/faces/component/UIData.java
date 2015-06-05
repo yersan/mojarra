@@ -50,18 +50,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.el.ValueExpression;
-import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.CDI;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
-import javax.faces.application.ApplicationMap;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.StateManager;
 import javax.faces.component.visit.VisitCallback;
@@ -85,7 +81,6 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.ResultDataModel;
 import javax.faces.model.ResultSetDataModel;
 import javax.faces.model.ScalarDataModel;
-import javax.inject.Named;
 import javax.servlet.jsp.jstl.sql.Result;
 
 
