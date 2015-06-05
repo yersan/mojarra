@@ -40,8 +40,6 @@
 
 package javax.faces.component;
 
-import static com.sun.faces.util.Util.getCdiBeanManager;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -52,10 +50,18 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import javax.el.ValueExpression;
+import javax.enterprise.inject.Instance;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.CDI;
+import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
+import javax.faces.application.ApplicationMap;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.StateManager;
 import javax.faces.component.visit.VisitCallback;
@@ -73,16 +79,14 @@ import javax.faces.event.PreValidateEvent;
 import javax.faces.model.ArrayDataModel;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.model.DataModel;
+import javax.faces.model.FacesDataModel;
 import javax.faces.model.IterableDataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.ResultDataModel;
 import javax.faces.model.ResultSetDataModel;
 import javax.faces.model.ScalarDataModel;
+import javax.inject.Named;
 import javax.servlet.jsp.jstl.sql.Result;
-
-import com.sun.faces.cdi.CdiUtils;
-import com.sun.faces.util.Util;
-
 
 
 // ------------------------------------------------------------- Private Classes
@@ -1856,8 +1860,9 @@ public class UIData extends UIComponentBase
         } else if (current instanceof Map) {
             setDataModel(new IterableDataModel<>(((Map<?, ?>) current).entrySet()));
         } else {
-            DataModel<?> dataModel = CdiUtils.createDataModel(getCdiBeanManager(getFacesContext()), current.getClass());
+            DataModel<?> dataModel = createDataModel(current.getClass());
             if (dataModel != null) {
+                dataModel.setWrappedData(current);
                 setDataModel(dataModel);
             } else {
                 setDataModel(new ScalarDataModel(current));
@@ -1865,6 +1870,61 @@ public class UIData extends UIComponentBase
         }
         return (model);
 
+    }
+    
+    @SuppressWarnings("all")
+    static private class FacesDataModelAnnotationLiteral extends AnnotationLiteral<FacesDataModel> implements FacesDataModel {
+        private static final long serialVersionUID = 1L;
+        
+        /**
+         * Stores the forClass attribute.
+         */
+        private final Class<?> forClass;
+
+        public FacesDataModelAnnotationLiteral(Class<?> forClass) {
+            this.forClass = forClass;
+        }
+
+        public Class<?> forClass() {
+            return forClass;
+        }
+    }
+    
+    private DataModel<?> createDataModel(final Class<?> forClass) {
+     
+        List<DataModel<?>> dataModel = new ArrayList<DataModel<?>>(1);
+        CDI<Object> cdi = CDI.current();
+        
+        // Scan the map in order, the first class that is a super class or equal to the class for which
+        // we're looking for a DataModel is the closest match, since the Map is sorted on inheritance relation
+        getDataModelClassesMap(cdi).entrySet().stream()
+            .filter(e -> e.getKey().isAssignableFrom(forClass))
+            .findFirst()
+            .ifPresent(
+                    
+                 // Get the bean from CDI which is of the class type that we found during annotation scanning
+                 // and has the @FacesDataModel annotation, with the "forClass" attribute set to the closest
+                 // super class of our target class.
+                    
+                e -> dataModel.add(
+                    cdi.select(
+                        e.getValue(),
+                        new FacesDataModelAnnotationLiteral(e.getKey())
+                    ).get())
+            );
+        
+        return dataModel.isEmpty()? null : dataModel.get(0);
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Map<Class<?>, Class<? extends DataModel<?>>> getDataModelClassesMap(CDI<Object> cdi) {
+        BeanManager beanManager = cdi.getBeanManager();
+
+        // Get the Map with classes for which a custom DataModel implementation is available from CDI
+        Bean<?> bean = beanManager.resolve(beanManager.getBeans("comSunFacesDataModelClassesMap"));
+        Object beanReference = beanManager.getReference(bean, Map.class, beanManager.createCreationalContext(bean));
+        
+        return (Map<Class<?>, Class<? extends DataModel<?>>>) beanReference;
     }
 
     /**

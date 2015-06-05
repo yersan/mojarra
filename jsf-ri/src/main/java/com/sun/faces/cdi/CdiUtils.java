@@ -39,15 +39,19 @@
  */
 package com.sun.faces.cdi;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import static java.util.Optional.empty;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.Queue;
+
+import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.faces.component.behavior.Behavior;
 import javax.faces.convert.Converter;
-import javax.faces.model.DataModel;
 import javax.faces.validator.Validator;
 
 /**
@@ -153,21 +157,6 @@ public final class CdiUtils {
     
         return delegatingValidator;
     }
-    
-    public static DataModel<?> createDataModel(final BeanManager beanManager, final Class<?> forClass) {
-
-        Object dataModel = null;
-
-        for (Class<?> currentClass = forClass; dataModel == null && currentClass != null; currentClass = currentClass.getSuperclass()) {
-            dataModel = getBeanReferenceByType(
-                beanManager, 
-                new ParameterizedTypeImpl(DataModel.class, new Type[] { currentClass }), 
-                new FacesDataModelAnnotationLiteral()
-            );
-        }
-
-        return (DataModel<?>) dataModel;
-    }
 
     /**
      * 
@@ -191,4 +180,46 @@ public final class CdiUtils {
 
         return beanReference;
     }
+
+    /**
+     * Finds an annotation in an Annotated, taking stereo types into account
+     * 
+     * @param beanManager the current bean manager
+     * @param annotated the Annotated in which to search
+     * @param annotationType the type of the annotation to search for
+     * @return An Optional that contains an instance of annotation type for which was searched if the annotated contained this. 
+     */
+    public static <A extends Annotation> Optional<A> getAnnotation(BeanManager beanManager, Annotated annotated, Class<A> annotationType) {
+
+        annotated.getAnnotation(annotationType);
+
+        if (annotated.getAnnotations().isEmpty()) {
+            return empty();
+        }
+
+        if (annotated.isAnnotationPresent(annotationType)) {
+            return Optional.of(annotated.getAnnotation(annotationType));
+        }
+
+        Queue<Annotation> annotations = new LinkedList<>(annotated.getAnnotations());
+
+        while (!annotations.isEmpty()) {
+            Annotation annotation = annotations.remove();
+
+            if (annotation.annotationType().equals(annotationType)) {
+                return Optional.of(annotationType.cast(annotation));
+            }
+
+            if (beanManager.isStereotype(annotation.annotationType())) {
+                annotations.addAll(
+                    beanManager.getStereotypeDefinition(
+                        annotation.annotationType()
+                    )
+                );
+            }
+        }
+
+        return empty();
+    }
+    
 }
