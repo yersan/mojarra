@@ -46,7 +46,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
+import javax.faces.FacesException;
 import javax.faces.component.ActionSource;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.NamingContainer;
@@ -330,14 +332,22 @@ public class AjaxBehaviorRenderer extends ClientBehaviorRenderer  {
     // Returns the resolved (client id) for a particular id.
     private static String getResolvedId(UIComponent component, String id) {
 
-        UIComponent resolvedComponent = component.findComponent(id);
+        UIComponent resolvedComponent = component.findComponent(stripIterationIndexFromClientId(id));
         if (resolvedComponent == null) {
-            if (id.charAt(0) == UINamingContainer.getSeparatorChar(FacesContext.getCurrentInstance())) {
-                return id.substring(1);
-            }
-            return id;
+            // RELEASE_PENDING  i18n
+            throw new FacesException(
+                "<f:ajax> contains an unknown id '"
+                + id
+                + "' - cannot locate it in the context of the component "+component.getId());
         }
 
         return resolvedComponent.getClientId();
     }
+
+    private static String stripIterationIndexFromClientId(String clientId) {
+        String separatorChar = Character.toString(UINamingContainer.getSeparatorChar(FacesContext.getCurrentInstance()));
+        String quotedSeparatorChar = Pattern.quote(separatorChar);
+        return clientId.replaceAll(quotedSeparatorChar + "[0-9]+" + quotedSeparatorChar, separatorChar);
+    }
+
 }
