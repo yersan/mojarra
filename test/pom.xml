@@ -14,15 +14,19 @@
     </prerequisites>
     <modules>
         <module>agnostic</module>
+        <!-- 
         <module>cluster</module>
         <module>glassfish</module>
         <module>groovy</module>
+         -->
         <module>javaee6</module>
         <module>javaee6web</module>
         <module>javaee7</module>
         <module>javaee8</module>
+        <!-- 
         <module>osgi</module>
         <module>protocolaware</module>
+         -->
         <module>quality</module>
         <module>servlet30</module>
         <module>servlet30-isolated</module>
@@ -30,7 +34,9 @@
         <module>servlet40</module>
         <module>unit</module>
         <module>util</module>
+        <!-- 
         <module>weblogic</module>
+         -->
     </modules>
     <build>
         <pluginManagement>
