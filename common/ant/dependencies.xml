@@ -419,6 +419,7 @@
 
 
         <!-- SERVLET API -->
+    	<!--
         <if>
             <not>
                 <available file="${servlet.jar}" property="ignored"/>
@@ -430,6 +431,7 @@
 
             </then>
         </if>
+        -->
 
         <if>
             <not>
@@ -484,6 +486,7 @@
         </if>
         -->
         <!-- JSTL API -->
+    	<!--
         <if>
             <not>
                 <available file="${jstl.jar}" property="ignored"/>
@@ -495,6 +498,7 @@
 
             </then>
         </if>
+    	-->
         <!-- ANNOTATION API -->
         <!--
         <if>
