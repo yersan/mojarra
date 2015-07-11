@@ -51,7 +51,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.faces.test.junit.JsfTest;
 
-public class DataTableCustomDataModelIT {
+public class UIRepeatCustomDataModelIT {
     private String webUrl;
 
     private WebClient webClient;
@@ -80,7 +80,7 @@ public class DataTableCustomDataModelIT {
     	// handle a Child11, but these should NOT be picked up and the exact match
     	// should be preferred.
     	
-    	HtmlPage page = webClient.getPage(webUrl + "datatableCustomDataModel11.xhtml");
+    	HtmlPage page = webClient.getPage(webUrl + "uirepeatCustomDataModel11.xhtml");
         assertTrue(matches("(?s).*START.*11-member 1.*11-member 2.*END.*", page.asXml()));
     }
     
@@ -97,7 +97,7 @@ public class DataTableCustomDataModelIT {
     	// should be chosen, which in this test is the DataModel that handles
     	// a Child11.
     	
-    	HtmlPage page = webClient.getPage(webUrl + "datatableCustomDataModel111.xhtml");
+    	HtmlPage page = webClient.getPage(webUrl + "uirepeatCustomDataModel111.xhtml");
         assertTrue(matches("(?s).*START.*111-member 1.*111-member 2.*END.*", page.asXml()));
     }
 }

@@ -43,15 +43,20 @@ import static java.util.Optional.empty;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
 
 import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.behavior.Behavior;
 import javax.faces.convert.Converter;
+import javax.faces.model.DataModel;
 import javax.faces.validator.Validator;
 
 /**
@@ -221,5 +226,43 @@ public final class CdiUtils {
 
         return empty();
     }
+    
+    public static DataModel<?> createDataModel(final Class<?> forClass) {
+        
+        List<DataModel<?>> dataModel = new ArrayList<DataModel<?>>(1);
+        CDI<Object> cdi = CDI.current();
+        
+        // Scan the map in order, the first class that is a super class or equal to the class for which
+        // we're looking for a DataModel is the closest match, since the Map is sorted on inheritance relation
+        getDataModelClassesMap(cdi).entrySet().stream()
+            .filter(e -> e.getKey().isAssignableFrom(forClass))
+            .findFirst()
+            .ifPresent(
+                    
+                 // Get the bean from CDI which is of the class type that we found during annotation scanning
+                 // and has the @FacesDataModel annotation, with the "forClass" attribute set to the closest
+                 // super class of our target class.
+                    
+                e -> dataModel.add(
+                    cdi.select(
+                        e.getValue(),
+                        new FacesDataModelAnnotationLiteral(e.getKey())
+                    ).get())
+            );
+        
+        return dataModel.isEmpty()? null : dataModel.get(0);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static Map<Class<?>, Class<? extends DataModel<?>>> getDataModelClassesMap(CDI<Object> cdi) {
+        BeanManager beanManager = cdi.getBeanManager();
+
+        // Get the Map with classes for which a custom DataModel implementation is available from CDI
+        Bean<?> bean = beanManager.resolve(beanManager.getBeans("comSunFacesDataModelClassesMap"));
+        Object beanReference = beanManager.getReference(bean, Map.class, beanManager.createCreationalContext(bean));
+        
+        return (Map<Class<?>, Class<? extends DataModel<?>>>) beanReference;
+    }
+
     
 }
