@@ -58,7 +58,10 @@ How to run tests
 
 </settings>
 
-2. From SOURCE_HOME run: ant mvn.deploy.snapshot.local
+2. From SOURCE_HOME run: 
+
+ant clean main
+ant mvn.deploy.snapshot.local
 
 This will build the source jars in addition to the binary jar, and will install these in the local m2 repository.
 
@@ -70,14 +73,17 @@ This will build the source jars in addition to the binary jar, and will install 
    
 The following is a summary of the commands:
 
-Compile test wars and install in .m2
-mvn clean install
-
 Copy updated JSF jar to GlassFish
 mvn -N -Pglassfish-patch validate
 
 Start GlassFish
 mvn -N -Pglassfish-cargo cargo:start
+
+(Optionally cd into specific test dir with a pom.xml, to only execute the tests
+in that dir)
+
+Compile test wars and install in .m2
+mvn clean install
 
 Deploy test wars
 mvn -Pglassfish-cargo cargo:redeploy
