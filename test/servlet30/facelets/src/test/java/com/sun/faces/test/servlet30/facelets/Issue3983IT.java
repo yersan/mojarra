@@ -1,14 +1,14 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.java.net/public/CDDLGPL_1_1.html
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -38,30 +38,27 @@
  * holder.
  */
 
-package com.sun.faces.test.servlet30.renderkit; 
+package com.sun.faces.test.servlet30.facelets;
 
+import javax.servlet.ServletException;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
+import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import static junit.framework.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-public class Issue2502IT {
-
-    /**
-     * Stores the web URL.
-     */
+public class Issue3983IT {
     private String webUrl;
-    /**
-     * Stores the web client.
-     */
     private WebClient webClient;
 
     @Before
     public void setUp() {
         webUrl = System.getProperty("integration.url");
-        webClient = new WebClient();
+        webClient = new WebClient(BrowserVersion.CHROME);
     }
 
     @After
@@ -69,25 +66,27 @@ public class Issue2502IT {
         webClient.closeAllWindows();
     }
 
-
-    // ------------------------------------------------------------ Test Methods
-
     @Test
-    public void testEscape() throws Exception {
+    public void testFormWithInputFileAndAjaxButton() throws Exception {
+        HtmlPage page = webClient.getPage(webUrl + "faces/formWithInputFileAndAjaxButtonExecuteAtAll.xhtml");
+        HtmlTextInput textField = (HtmlTextInput) page.getElementById("test");
 
-        String expected1 = "&lt;i&gt;test1&lt;/i&gt;";
-        String expected2 = "&lt;i&gt;test2&lt;/i&gt;";
-        String expected3 = "&lt;i&gt;test3&lt;/i&gt;";
+        boolean exceptionThrown = false;
 
-        /*
-         * We don't want this to be simulated as an IE browser since IE
-         * does some automatic replacing.
-         */
-        webClient = new WebClient(BrowserVersion.FIREFOX_31);
-        HtmlPage page = webClient.getPage(webUrl+"faces/outputEscape.xhtml");
-        assertTrue(page.asXml().contains(expected1));
-        assertTrue(page.asXml().contains(expected2));
-        assertTrue(page.asXml().contains(expected3));
+        textField.focus();
+        page = (HtmlPage)textField.type('C');
+        page = (HtmlPage)textField.type('B');
+        textField.blur();
+
+        HtmlSubmitInput button = (HtmlSubmitInput) page.getElementById("mybutton");
+        page = button.click();
+        webClient.waitForBackgroundJavaScript(60000);
+
+        assertTrue(
+            "Server should not throw an exception, but instance of: " + textField.getText() + " was thrown",
+            !textField.getText().contains("Exception")
+        );
+        assertTrue(page.asXml().contains("This is the next page"));
     }
 
 }
