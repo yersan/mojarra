@@ -17,9 +17,21 @@ How to make changes using Eclipse
 =================================
 
 1. Make changes as needed in .java files, but note that the Eclipse compiled result in SOURCE_HOME/bin must be ignored
-2. From SOURCE_HOME run (on the command line) ant clean main
+2. From SOURCE_HOME run (on the command line) 
 
-The jsf-api.jar will be in SOURCE_HOME/jsf-api/build/lib and jsf-impl.jar will be in SOURCE_HOME/jsf-ri/build/lib.
+ant clean main
+ant mvn.deploy.snapshot.local
+
+In SOURCE_HOME/jsf-ri/build/lib/ will be:
+
+javax.faces.jar
+
+In SOURCE_HOME/jsf-ri/build/mvn/target will be:
+
+javax.faces-2.3.0-m03-SNAPSHOT.jar
+javax.faces-2.3.0-m03-SNAPSHOT-sources.jar
+javax.faces-2.3.0-m03-SNAPSHOT-javadoc.jar
+javax.faces-2.3.0-m03-SNAPSHOT-documentation.jar
 
 
 
@@ -65,33 +77,26 @@ ant mvn.deploy.snapshot.local
 
 This will build the source jars in addition to the binary jar, and will install these in the local m2 repository.
 
-3. cd into SOURCE_HOME/test and follow the README.txt there
+3. cd into SOURCE_HOME/test
 
-4. Not mentioned in the README.txt, but to run multiple test categories at once, run the commands mentioned in 
-   the README.txt from the top level test directory and add "--projects [dirs] -amd" as extra arguments, e.g.
-   mvn --projects javaee7,javaee6  -amd  -Pglassfish-cargo cargo:redeploy   
-   
-The following is a summary of the commands:
-
-Copy updated JSF jar to GlassFish
+4. Copy updated JSF jar to GlassFish
 mvn -N -Pglassfish-patch validate
 
-Start GlassFish
+5. Start GlassFish
 mvn -N -Pglassfish-cargo cargo:start
 
-(Optionally cd into specific test dir with a pom.xml, to only execute the tests
-in that dir)
+6. cd into a specific directory for which to run tests, e.g. cd servlet30
 
-Compile test wars and install in .m2
+7. Compile test wars and install in .m2
 mvn clean install
 
-Deploy test wars
+8. Deploy test wars
 mvn -Pglassfish-cargo cargo:redeploy
 
-Run tests 
+9. Run tests 
 mvn -Pintegration verify
 
-Stop GlassFish
+10. Stop GlassFish
 mvn -N -Pglassfish-cargo cargo:stop
 
 How to update the mirror from the (local) SVN checkout
