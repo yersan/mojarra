@@ -7,9 +7,7 @@ Assuming SOURCE_HOME is the directory containing this readme.txt
 2. Edit build.properties and set jsf.build.home to SOURCE_HOME
 3. Make sure JAVA_HOME is set and points to a JDK8 install 
    e.g. on Ubuntu put JAVA_HOME=/opt/jdk8 in /etc/environment 
-4. From SOURCE_HOME run (on the commandline) ant main clean main
-
-The jsf-api.jar will be in SOURCE_HOME/jsf-api/build/lib and jsf-impl.jar will be in SOURCE_HOME/jsf-ri/build/lib.
+4. From SOURCE_HOME run ONCE (on the commandline) ant main clean main
 
 
 
@@ -17,7 +15,11 @@ How to make changes using Eclipse
 =================================
 
 1. Make changes as needed in .java files, but note that the Eclipse compiled result in SOURCE_HOME/bin must be ignored
-2. From SOURCE_HOME run (on the command line) 
+2. From SOURCE_HOME run (on the command line)
+
+   ./build
+
+This will execute the following two commands that can also be used manually: 
 
 ant clean main
 ant mvn.deploy.snapshot.local
@@ -72,32 +74,55 @@ How to run tests
 
 2. From SOURCE_HOME run: 
 
-ant clean main
-ant mvn.deploy.snapshot.local
+    ./build
 
 This will build the source jars in addition to the binary jar, and will install these in the local m2 repository.
 
-3. cd into SOURCE_HOME/test
+3. cd into SOURCE_HOME/test 
 
-4. Copy updated JSF jar to GlassFish
+4. Init the test system ONCE or whenever there are changes to the main JSF version (e.g. m04 becomes m05), or whenever
+   the /unit or /util folders have incomming changes: 
+
+   ./init-tests-run-once
+   
+5. Execute ALL tests that run locally on GlassFish:
+
+   ./run-tests
+   
+6. ALTERNATIVELY, run specific tests only by enumerating them after the command. Names correspond with the folders found
+   in /test. E.g.
+   
+   ./run-tests javaee8 javaee7 
+
+
+
+
+What steps does "run-tests" take for each test folder?
+======================================================
+
+For each folder (e.g. javaee8) where tests are run, the following steps are
+performed. If needed they can be executed manually as well (from the designated 
+test folder, e.g. from test/javaee8/):
+
+1. Copy updated JSF jar to GlassFish
 mvn -N -Pglassfish-patch validate
 
-5. Start GlassFish
+2. Start GlassFish
 mvn -N -Pglassfish-cargo cargo:start
 
-6. cd into a specific directory for which to run tests, e.g. cd servlet30
-
-7. Compile test wars and install in .m2
+3. Compile test wars and install in .m2
 mvn clean install
 
-8. Deploy test wars
+5. Deploy test wars
 mvn -Pglassfish-cargo cargo:redeploy
 
-9. Run tests 
+6. Run tests 
 mvn -Pintegration verify
 
-10. Stop GlassFish
+7. Stop GlassFish
 mvn -N -Pglassfish-cargo cargo:stop
+
+
 
 How to update the mirror from the (local) SVN checkout
 ======================================================
