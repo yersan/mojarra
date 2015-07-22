@@ -39,8 +39,15 @@
  */
 package com.sun.faces.cdi;
 
-import java.io.Serializable;
+import static java.util.Collections.emptySet;
 
+import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.util.Set;
+
+import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.inject.spi.PassivationCapable;
 import javax.faces.context.FacesContext;
 
@@ -50,7 +57,7 @@ import com.sun.faces.config.WebConfiguration;
  * An abstract base class used by the CDI producers for some common
  * functionality.
  */
-abstract class CdiProducer implements PassivationCapable, Serializable {
+abstract class CdiProducer<T> implements Bean<T>, PassivationCapable, Serializable {
     
     /**
      * Serialization version
@@ -80,6 +87,62 @@ abstract class CdiProducer implements PassivationCapable, Serializable {
         // with arguments) a subclass needs a return a more specific
         // value here.
         return this.getClass().getName();
+    }
+    
+    /**
+     * Destroy the instance.
+     *
+     * <p>
+     * Since most artifact that the sub classes are producing 
+     * are artifacts that the JSF runtime really is
+     * managing the destroy method here does not need to do anything.
+     * </p>
+     *
+     * @param instance the instance.
+     * @param creationalContext the creational context.
+     */
+    @Override
+    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    }
+    
+    /**
+     * Get the injection points.
+     *
+     * @return the injection points.
+     */
+    @Override
+    public Set<InjectionPoint> getInjectionPoints() {
+        return emptySet();
+    }
+    
+    /**
+     * Get the stereotypes.
+     *
+     * @return the stereotypes.
+     */
+    @Override
+    public Set<Class<? extends Annotation>> getStereotypes() {
+        return emptySet();
+    }
+    
+    /**
+     * Is this an alternative.
+     *
+     * @return false.
+     */
+    @Override
+    public boolean isAlternative() {
+        return false;
+    }
+
+    /**
+     * Is this nullable.
+     *
+     * @return false.
+     */
+    @Override
+    public boolean isNullable() {
+        return false;
     }
 
     /**

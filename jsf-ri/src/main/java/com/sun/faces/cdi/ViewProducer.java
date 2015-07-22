@@ -39,18 +39,17 @@
  */
 package com.sun.faces.cdi;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
@@ -64,7 +63,7 @@ import javax.faces.context.FacesContext;
  * @since 2.3
  * @see UIViewRoot
  */
-public class ViewProducer extends CdiProducer implements Bean<UIViewRoot> {
+public class ViewProducer extends CdiProducer<UIViewRoot> {
 
     /**
      * Serialization version
@@ -93,16 +92,6 @@ public class ViewProducer extends CdiProducer implements Bean<UIViewRoot> {
     }
 
     /**
-     * Destroy the instance.
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(UIViewRoot instance, CreationalContext<UIViewRoot> creationalContext) {
-    }
-
-    /**
      * Get the bean class.
      *
      * @return the bean class.
@@ -111,25 +100,15 @@ public class ViewProducer extends CdiProducer implements Bean<UIViewRoot> {
     public Class<?> getBeanClass() {
         return UIViewRoot.class;
     }
-
+    
     /**
-     * Get the injection points.
+     * Get the types.
      *
-     * @return the injection points.
+     * @return the types.
      */
     @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
-    }
-
-    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
-    @Override
-    public String getName() {
-        return "view";
+    public Set<Type> getTypes() {
+        return new HashSet<>(asList(UIViewRoot.class));
     }
 
     /**
@@ -140,6 +119,16 @@ public class ViewProducer extends CdiProducer implements Bean<UIViewRoot> {
     @Override
     public Set<Annotation> getQualifiers() {
         return singleton((Annotation) new DefaultAnnotationLiteral());
+    }
+    
+    /**
+     * Get the name.
+     *
+     * @return the name.
+     */
+    @Override
+    public String getName() {
+        return "view";
     }
 
     /**
@@ -152,43 +141,4 @@ public class ViewProducer extends CdiProducer implements Bean<UIViewRoot> {
         return RequestScoped.class;
     }
 
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
-    /**
-     * Get the types.
-     *
-     * @return the types.
-     */
-    @Override
-    public Set<Type> getTypes() {
-        return new HashSet<>(asList(UIViewRoot.class));
-    }
-
-    /**
-     * Is this an alternative.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isAlternative() {
-        return false;
-    }
-
-    /**
-     * Is this nullable.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isNullable() {
-        return true;
-    }
 }

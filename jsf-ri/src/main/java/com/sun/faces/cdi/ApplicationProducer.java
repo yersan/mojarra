@@ -39,17 +39,16 @@
  */
 package com.sun.faces.cdi;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.application.ApplicationMap;
 import javax.faces.context.ExternalContext;
@@ -64,7 +63,7 @@ import javax.faces.context.FacesContext;
  * @since 2.3
  * @see ExternalContext
  */
-public class ApplicationProducer extends CdiProducer implements Bean<Object> {
+public class ApplicationProducer extends CdiProducer<Object> {
     
     /**
      * Serialization version
@@ -93,21 +92,6 @@ public class ApplicationProducer extends CdiProducer implements Bean<Object> {
     }
 
     /**
-     * Destroy the instance.
-     *
-     * <p>
-     * Since the FacesContext is a JSF artifact that the JSF runtime really is
-     * managing the destroy method here does not need to do anything.
-     * </p>
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(Object instance, CreationalContext<Object> creationalContext) {
-    }
-
-    /**
      * Get the bean class.
      *
      * @return the bean class.
@@ -116,25 +100,15 @@ public class ApplicationProducer extends CdiProducer implements Bean<Object> {
     public Class<?> getBeanClass() {
         return Object.class;
     }
-
+    
     /**
-     * Get the injection points.
+     * Get the types.
      *
-     * @return the injection points.
+     * @return the types.
      */
     @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
-    }
-
-    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
-    @Override
-    public String getName() {
-        return "application";
+    public Set<Type> getTypes() {
+        return new HashSet<>(asList(Object.class));
     }
 
     /**
@@ -145,6 +119,16 @@ public class ApplicationProducer extends CdiProducer implements Bean<Object> {
     @Override
     public Set<Annotation> getQualifiers() {
         return singleton((Annotation) new DefaultAnnotationLiteral());
+    }
+    
+    /**
+     * Get the name.
+     *
+     * @return the name.
+     */
+    @Override
+    public String getName() {
+        return "application";
     }
 
     /**
@@ -157,43 +141,4 @@ public class ApplicationProducer extends CdiProducer implements Bean<Object> {
         return ApplicationScoped.class;
     }
 
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
-    /**
-     * Get the types.
-     *
-     * @return the types.
-     */
-    @Override
-    public Set<Type> getTypes() {
-        return new HashSet<>(asList(Object.class));
-    }
-
-    /**
-     * Is this an alternative.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isAlternative() {
-        return false;
-    }
-
-    /**
-     * Is this nullable.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isNullable() {
-        return false;
-    }
 }

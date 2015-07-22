@@ -39,19 +39,17 @@
  */
 package com.sun.faces.cdi;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.InjectionPoint;
-import javax.enterprise.inject.spi.PassivationCapable;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.context.FacesContext;
 
@@ -64,26 +62,12 @@ import javax.faces.context.FacesContext;
  * @since 2.3
  * @see FacesContext
  */
-public class SessionProducer extends CdiProducer implements Bean<Object>, PassivationCapable {
+public class SessionProducer extends CdiProducer<Object> {
 
     /**
      * Serialization version
      */
     private static final long serialVersionUID = 1L;
-    
-    /**
-     * Get the id.
-     *
-     * @return the id.
-     */
-    @Override
-    public String getId() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (facesContext != null && facesContext.getExternalContext().getSession(false) != null) {
-            return SessionProducer.class.getName() + "-" + FacesContext.getCurrentInstance().getExternalContext().getSessionId(false);
-        }
-        return SessionProducer.class.getName();
-    }
 
     /**
      * Inner class defining an annotation literal for @Default.
@@ -106,15 +90,6 @@ public class SessionProducer extends CdiProducer implements Bean<Object>, Passiv
         return FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     }
 
-    /**
-     * Destroy the instance.
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(Object instance, CreationalContext<Object> creationalContext) {
-    }
 
     /**
      * Get the bean class.
@@ -125,25 +100,15 @@ public class SessionProducer extends CdiProducer implements Bean<Object>, Passiv
     public Class<?> getBeanClass() {
         return Object.class;
     }
-
+    
     /**
-     * Get the injection points.
+     * Get the types.
      *
-     * @return the injection points.
+     * @return the types.
      */
     @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
-    }
-
-    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
-    @Override
-    public String getName() {
-        return "session";
+    public Set<Type> getTypes() {
+        return new HashSet<>(asList(Object.class));
     }
 
     /**
@@ -154,6 +119,16 @@ public class SessionProducer extends CdiProducer implements Bean<Object>, Passiv
     @Override
     public Set<Annotation> getQualifiers() {
         return singleton((Annotation) new DefaultAnnotationLiteral());
+    }
+    
+    /**
+     * Get the name.
+     *
+     * @return the name.
+     */
+    @Override
+    public String getName() {
+        return "session";
     }
 
     /**
@@ -166,43 +141,4 @@ public class SessionProducer extends CdiProducer implements Bean<Object>, Passiv
         return SessionScoped.class;
     }
 
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
-    /**
-     * Get the types.
-     *
-     * @return the types.
-     */
-    @Override
-    public Set<Type> getTypes() {
-        return new HashSet<>(asList(Object.class));
-    }
-
-    /**
-     * Is this an alternative.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isAlternative() {
-        return false;
-    }
-
-    /**
-     * Is this nullable.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isNullable() {
-        return true;
-    }
 }

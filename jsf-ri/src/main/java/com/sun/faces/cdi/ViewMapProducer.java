@@ -39,18 +39,17 @@
  */
 package com.sun.faces.cdi;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
@@ -65,7 +64,7 @@ import javax.faces.view.ViewMap;
  * @since 2.3
  * @see UIViewRoot#getViewMap()
  */
-public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Object>> {
+public class ViewMapProducer extends CdiProducer<Map<String, Object>> {
 
     /**
      * Serialization version
@@ -108,21 +107,6 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
     }
 
     /**
-     * Destroy the instance.
-     *
-     * <p>
-     * Since the FacesContext is a JSF artifact that the JSF runtime really is
-     * managing the destroy method here does not need to do anything.
-     * </p>
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(Map<String, Object> instance, CreationalContext<Map<String, Object>> creationalContext) {
-    }
-
-    /**
      * Get the bean class.
      *
      * @return the bean class.
@@ -131,15 +115,25 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
     public Class<?> getBeanClass() {
         return Map.class;
     }
-
+    
     /**
-     * Get the injection points.
+     * Get the types.
      *
-     * @return the injection points.
+     * @return the types.
      */
     @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
+    public Set<Type> getTypes() {
+        return types;
+    }
+    
+    /**
+     * Get the qualifiers.
+     *
+     * @return the qualifiers.
+     */
+    @Override
+    public Set<Annotation> getQualifiers() {
+        return singleton((Annotation) new ViewMapAnnotationLiteral());
     }
 
     /**
@@ -153,16 +147,6 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
     }
 
     /**
-     * Get the qualifiers.
-     *
-     * @return the qualifiers.
-     */
-    @Override
-    public Set<Annotation> getQualifiers() {
-        return singleton((Annotation) new ViewMapAnnotationLiteral());
-    }
-
-    /**
      * Get the scope.
      *
      * @return the scope.
@@ -172,43 +156,4 @@ public class ViewMapProducer extends CdiProducer implements Bean<Map<String, Obj
         return RequestScoped.class;
     }
 
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
-    /**
-     * Get the types.
-     *
-     * @return the types.
-     */
-    @Override
-    public Set<Type> getTypes() {
-        return types;
-    }
-
-    /**
-     * Is this an alternative.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isAlternative() {
-        return false;
-    }
-
-    /**
-     * Is this nullable.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isNullable() {
-        return false;
-    }
 }

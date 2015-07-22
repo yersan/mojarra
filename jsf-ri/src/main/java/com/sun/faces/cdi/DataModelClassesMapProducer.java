@@ -40,7 +40,6 @@
 package com.sun.faces.cdi;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
 
 import java.lang.annotation.Annotation;
@@ -51,9 +50,7 @@ import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.CDI;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.faces.model.DataModel;
 
 /**
@@ -70,7 +67,7 @@ import javax.faces.model.DataModel;
  * @since 2.3
  *
  */
-public class DataModelClassesMapProducer extends CdiProducer implements Bean<Map<Class<?>, Class<? extends DataModel<?>>>> {
+public class DataModelClassesMapProducer extends CdiProducer<Map<Class<?>, Class<? extends DataModel<?>>>> {
 
     /**
      * Serialization version
@@ -111,17 +108,6 @@ public class DataModelClassesMapProducer extends CdiProducer implements Bean<Map
     }
 
     /**
-     * Destroy the instance.
-     * </p>
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(Map<Class<?>, Class<? extends DataModel<?>>> instance, CreationalContext<Map<Class<?>, Class<? extends DataModel<?>>>> creationalContext) {
-    }
-
-    /**
      * Get the bean class.
      *
      * @return the bean class.
@@ -130,57 +116,7 @@ public class DataModelClassesMapProducer extends CdiProducer implements Bean<Map
     public Class<?> getBeanClass() {
         return Map.class;
     }
-
-    /**
-     * Get the injection points.
-     *
-     * @return the injection points.
-     */
-    @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
-    }
-
-    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
-    @Override
-    public String getName() {
-        return "comSunFacesDataModelClassesMap";
-    }
-
-    /**
-     * Get the qualifiers.
-     *
-     * @return the qualifiers.
-     */
-    @Override
-    public Set<Annotation> getQualifiers() {
-        return qualifiers;
-    }
-
-    /**
-     * Get the scope.
-     *
-     * @return the scope.
-     */
-    @Override
-    public Class<? extends Annotation> getScope() {
-        return ApplicationScoped.class;
-    }
-
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
+    
     /**
      * Get the types.
      *
@@ -192,22 +128,32 @@ public class DataModelClassesMapProducer extends CdiProducer implements Bean<Map
     }
 
     /**
-     * Is this an alternative.
+     * Get the qualifiers.
      *
-     * @return false.
+     * @return the qualifiers.
      */
     @Override
-    public boolean isAlternative() {
-        return false;
+    public Set<Annotation> getQualifiers() {
+        return qualifiers;
+    }
+    
+    /**
+     * Get the name.
+     *
+     * @return the name.
+     */
+    @Override
+    public String getName() {
+        return "comSunFacesDataModelClassesMap";
     }
 
     /**
-     * Is this nullable.
+     * Get the scope.
      *
-     * @return false.
+     * @return the scope.
      */
     @Override
-    public boolean isNullable() {
-        return false;
+    public Class<? extends Annotation> getScope() {
+        return ApplicationScoped.class;
     }
 }

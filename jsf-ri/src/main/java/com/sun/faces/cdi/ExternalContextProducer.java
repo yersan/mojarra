@@ -39,18 +39,17 @@
  */
 package com.sun.faces.cdi;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -64,7 +63,7 @@ import javax.faces.context.FacesContext;
  * @since 2.3
  * @see FacesContext
  */
-public class ExternalContextProducer extends CdiProducer implements Bean<ExternalContext> {
+public class ExternalContextProducer extends CdiProducer<ExternalContext> {
 
     /**
      * Serialization version
@@ -93,33 +92,33 @@ public class ExternalContextProducer extends CdiProducer implements Bean<Externa
     }
 
     /**
-     * Destroy the instance.
-     *
-     * @param instance the instance.
-     * @param creationalContext the creational context.
-     */
-    @Override
-    public void destroy(ExternalContext instance, CreationalContext<ExternalContext> creationalContext) {
-    }
-
-    /**
      * Get the bean class.
      *
      * @return the bean class.
      */
     @Override
     public Class<?> getBeanClass() {
-        return FacesContext.class;
+        return ExternalContext.class;
     }
-
+    
     /**
-     * Get the injection points.
+     * Get the types.
      *
-     * @return the injection points.
+     * @return the types.
      */
     @Override
-    public Set<InjectionPoint> getInjectionPoints() {
-        return emptySet();
+    public Set<Type> getTypes() {
+        return new HashSet<>(asList(ExternalContext.class));
+    }
+    
+    /**
+     * Get the qualifiers.
+     *
+     * @return the qualifiers.
+     */
+    @Override
+    public Set<Annotation> getQualifiers() {
+        return singleton((Annotation) new DefaultAnnotationLiteral());
     }
 
     /**
@@ -133,16 +132,6 @@ public class ExternalContextProducer extends CdiProducer implements Bean<Externa
     }
 
     /**
-     * Get the qualifiers.
-     *
-     * @return the qualifiers.
-     */
-    @Override
-    public Set<Annotation> getQualifiers() {
-        return singleton((Annotation) new DefaultAnnotationLiteral());
-    }
-
-    /**
      * Get the scope.
      *
      * @return the scope.
@@ -152,43 +141,4 @@ public class ExternalContextProducer extends CdiProducer implements Bean<Externa
         return RequestScoped.class;
     }
 
-    /**
-     * Get the stereotypes.
-     *
-     * @return the stereotypes.
-     */
-    @Override
-    public Set<Class<? extends Annotation>> getStereotypes() {
-        return emptySet();
-    }
-
-    /**
-     * Get the types.
-     *
-     * @return the types.
-     */
-    @Override
-    public Set<Type> getTypes() {
-        return new HashSet<>(asList(ExternalContext.class));
-    }
-
-    /**
-     * Is this an alternative.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isAlternative() {
-        return false;
-    }
-
-    /**
-     * Is this nullable.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isNullable() {
-        return false;
-    }
 }
