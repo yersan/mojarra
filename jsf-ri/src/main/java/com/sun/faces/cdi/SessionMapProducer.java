@@ -39,21 +39,18 @@
  */
 package com.sun.faces.cdi;
 
-import static java.util.Arrays.asList;
+import static com.sun.faces.util.CollectionsUtils.asSet;
 import static java.util.Collections.singleton;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.SessionMap;
 
 /**
  * <p class="changed_added_2_3">
@@ -75,30 +72,16 @@ public class SessionMapProducer extends CdiProducer<Map<String, Object>> {
      * The set of types that this producer is capable of producing, and hence
      * can be used as the type of an injection point.
      */
-    private final Set<Type> types = new HashSet<>(asList(
+    private final Set<Type> types = asSet(
             new ParameterizedTypeImpl(Map.class, new Type[]{String.class, Object.class}),
             Map.class,
-            Object.class));
-
-    /**
-     * Inner class defining an annotation literal for @SessionMap.
-     */
-    public class SessionMapAnnotationLiteral
-            extends AnnotationLiteral<SessionMap> {
-
-        @Override
-        public Class<? extends Annotation> annotationType() {
-            return SessionMap.class;
-        }
-
-        private static final long serialVersionUID = 1L;
-    }
+            Object.class);
 
     /**
      * Create the actual instance.
      *
      * @param creationalContext the creational context.
-     * @return the Faces context.
+     * @return the session map.
      */
     @Override
     public Map<String, Object> create(CreationalContext<Map<String, Object>> creationalContext) {
@@ -133,7 +116,7 @@ public class SessionMapProducer extends CdiProducer<Map<String, Object>> {
      */
     @Override
     public Set<Annotation> getQualifiers() {
-        return singleton((Annotation) new SessionMapAnnotationLiteral());
+        return singleton(new SessionMapAnnotationLiteral());
     }
     
     /**

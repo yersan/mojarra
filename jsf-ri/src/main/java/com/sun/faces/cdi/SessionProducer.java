@@ -39,18 +39,15 @@
  */
 package com.sun.faces.cdi;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.singleton;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.Default;
-import javax.enterprise.util.AnnotationLiteral;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -60,7 +57,7 @@ import javax.faces.context.FacesContext;
  * </p>
  *
  * @since 2.3
- * @see FacesContext
+ * @see ExternalContext#getSession(boolean)
  */
 public class SessionProducer extends CdiProducer<Object> {
 
@@ -70,26 +67,16 @@ public class SessionProducer extends CdiProducer<Object> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Inner class defining an annotation literal for @Default.
-     */
-    public class DefaultAnnotationLiteral
-            extends AnnotationLiteral<Default> {
-
-        private static final long serialVersionUID = 1L;
-    }
-
-    /**
      * Create the actual instance.
      *
      * @param creationalContext the creational context.
-     * @return the Faces context.
+     * @return the session.
      */
     @Override
     public Object create(CreationalContext<Object> creationalContext) {
         checkActive();
         return FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     }
-
 
     /**
      * Get the bean class.
@@ -108,17 +95,7 @@ public class SessionProducer extends CdiProducer<Object> {
      */
     @Override
     public Set<Type> getTypes() {
-        return new HashSet<>(asList(Object.class));
-    }
-
-    /**
-     * Get the qualifiers.
-     *
-     * @return the qualifiers.
-     */
-    @Override
-    public Set<Annotation> getQualifiers() {
-        return singleton((Annotation) new DefaultAnnotationLiteral());
+        return singleton(Object.class);
     }
     
     /**

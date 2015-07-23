@@ -40,6 +40,7 @@
 package com.sun.faces.cdi;
 
 import static java.util.Collections.emptySet;
+import static java.util.Collections.singleton;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
@@ -56,6 +57,8 @@ import com.sun.faces.config.WebConfiguration;
 /**
  * An abstract base class used by the CDI producers for some common
  * functionality.
+ * 
+ * @since 2.3
  */
 abstract class CdiProducer<T> implements Bean<T>, PassivationCapable, Serializable {
     
@@ -87,6 +90,16 @@ abstract class CdiProducer<T> implements Bean<T>, PassivationCapable, Serializab
         // with arguments) a subclass needs a return a more specific
         // value here.
         return this.getClass().getName();
+    }
+    
+    /**
+     * Get the default qualifier.
+     *
+     * @return the qualifiers, which in the default case only contains the Default
+     */
+    @Override
+    public Set<Annotation> getQualifiers() {
+        return singleton(new DefaultAnnotationLiteral());
     }
     
     /**

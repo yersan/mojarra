@@ -39,18 +39,14 @@
  */
 package com.sun.faces.cdi;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.singleton;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.Default;
-import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.context.FacesContext;
 
 /**
@@ -68,15 +64,6 @@ public class FacesContextProducer extends CdiProducer<FacesContext> {
      * Serialization version
      */
     private static final long serialVersionUID = 1L;
-    
-    /**
-     * Inner class defining an annotation literal for @Default.
-     */
-    public class DefaultAnnotationLiteral
-            extends AnnotationLiteral<Default> {
-
-        private static final long serialVersionUID = 1L;
-    }
 
     /**
      * Create the actual instance.
@@ -107,17 +94,7 @@ public class FacesContextProducer extends CdiProducer<FacesContext> {
      */
     @Override
     public Set<Type> getTypes() {
-        return new HashSet<>(asList(FacesContext.class));
-    }
-    
-    /**
-     * Get the qualifiers.
-     *
-     * @return the qualifiers.
-     */
-    @Override
-    public Set<Annotation> getQualifiers() {
-        return singleton((Annotation) new DefaultAnnotationLiteral());
+        return singleton(FacesContext.class);
     }
 
     /**

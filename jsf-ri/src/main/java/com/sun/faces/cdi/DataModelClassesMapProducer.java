@@ -39,12 +39,11 @@
  */
 package com.sun.faces.cdi;
 
-import static java.util.Arrays.asList;
+import static com.sun.faces.util.CollectionsUtils.asSet;
 import static java.util.Collections.singleton;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -78,25 +77,23 @@ public class DataModelClassesMapProducer extends CdiProducer<Map<Class<?>, Class
      * The set of types that this producer is capable of producing, and hence
      * can be used as the type of an injection point.
      */
-    private final Set<Type> types = new HashSet<>(asList(
+    private final Set<Type> types = asSet(
         Map.class,
-        Object.class)
-    );
+        Object.class);
     
     /**
      * The qualifiers uses by an injection point of bean manager client to denote a
      * specific produced type beyond its class type.
      */
     private final Set<Annotation> qualifiers = singleton(
-        new DataModelClassesAnnotationLiteral()
-    );
+        new DataModelClassesAnnotationLiteral());
     
 
     /**
      * Create the actual instance.
      *
      * @param creationalContext the creational context.
-     * @return the Faces context.
+     * @return a Map of types to DataModel implementations.
      */
     @Override
     public Map<Class<?>, Class<? extends DataModel<?>>> create(CreationalContext<Map<Class<?>, Class<? extends DataModel<?>>>> creationalContext) {
