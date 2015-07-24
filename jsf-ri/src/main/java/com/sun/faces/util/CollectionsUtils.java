@@ -42,7 +42,6 @@ package com.sun.faces.util;
 
 import static java.util.Arrays.asList;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
